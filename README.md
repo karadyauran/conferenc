@@ -4,8 +4,6 @@
 
 This schema defines the structure for a web-based application designed to manage event bookings and organization. Below are the SQL table definitions along with their purposes:
 
-#### Tables
-
  `users`
 - **`id`**: A unique identifier for each user (Primary Key).
 - **`username`**: The user's chosen username.
@@ -52,4 +50,4 @@ This schema defines the structure for a web-based application designed to manage
 - Represents the many-to-many relationship between events and categories.
 - **`event_id`** and **`category_id`**: Composite Primary Key, linking to `events` and `event_categories` respectively.
 
-This schema is designed to be flexible and can be expanded with additional features such as payment processing, feedback mechanisms, and more detailed user profiles.
+![Database schema](assets/db_image.png)

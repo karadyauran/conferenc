@@ -1,1 +1,39 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
 
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:3432/conferenc?currentSchema=conferenc
+    username: conferenc
+    password: conferenc
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    url: jdbc:postgresql://localhost:3432/conferenc?currentSchema=conferenc
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    encoding: UTF-8
+    create-schemas: true
+    schemas: conferenc
+
+    h2:
+      console:
+        enabled: true
+        settings:
+          web-allow-others: true
+
+
+springdoc:
+  webjars:
+    prefix:
+  swagger-ui:
+    path: /conferenc/v1/swagger-ui.html
+    disable-swagger-default-url: true
+    enabled: true
+    operationsSorter: alpha
+    tagsSorter: alpha
+    doc-expansion: none
+  api-docs:
+    enabled: true
+    path: /conferenc/v1/api-docs

@@ -17,5 +17,6 @@ import lombok.ToString;
 public class BookingDto
 {
     UserShortDto users;
-    EventDto event;
+    String status;
+    Integer numberOfAttendees;
 }

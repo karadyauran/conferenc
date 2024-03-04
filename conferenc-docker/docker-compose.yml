@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres
+    container_name: conferenc
+    environment:
+      POSTGRES_DB: conferenc
+      POSTGRES_USER: conferenc
+      POSTGRES_PASSWORD: conferenc
+    ports:
+      - "3432:5432"
+    user: postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 1s
+      timeout: 1s
+      retries: 5

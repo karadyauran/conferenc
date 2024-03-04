@@ -47,6 +47,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation group: 'org.springframework.security', name: 'spring-security-web', version: '6.2.1'
+    implementation "org.springframework.boot:spring-boot-starter-security"
+
+    // Security token
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.3'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.3'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.12.3'
 
     // PostgreSQL Database Dependencies
     implementation group: 'org.postgresql', name: 'postgresql', version: postgreVersion

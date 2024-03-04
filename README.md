@@ -67,7 +67,7 @@ This schema defines the structure for a web-based application designed to manage
 - Represents the many-to-many relationship between events and categories.
 - **`event_id`** and **`category_id`**: Composite Primary Key, linking to `events` and `event_categories` respectively.
 
-![Database schema](assets/db_image.png)
+![Database schema](assets/db_schema.png)
 
 ## 🤝 Contributing
 

@@ -2,7 +2,7 @@
 CREATE TABLE users
 (
     id            UUID PRIMARY KEY,
-    username      VARCHAR(255)        NOT NULL,
+    username      VARCHAR(255) UNIQUE NOT NULL,
     email         VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255)        NOT NULL,
     role          VARCHAR(50)         NOT NULL
@@ -12,7 +12,7 @@ CREATE TABLE users
 CREATE TABLE events
 (
     id           UUID PRIMARY KEY,
-    organizer_id INTEGER      NOT NULL,
+    organizer_id UUID         NOT NULL,
     title        VARCHAR(255) NOT NULL,
     description  TEXT,
     start_time   TIMESTAMP    NOT NULL,
@@ -27,8 +27,8 @@ CREATE TABLE events
 CREATE TABLE bookings
 (
     id                  UUID PRIMARY KEY,
-    user_id             INTEGER NOT NULL,
-    event_id            INTEGER NOT NULL,
+    user_id             UUID NOT NULL,
+    event_id            UUID NOT NULL,
     status              VARCHAR(50),
     number_of_attendees INTEGER DEFAULT 1,
     FOREIGN KEY (user_id) REFERENCES users (id),
@@ -39,7 +39,7 @@ CREATE TABLE bookings
 CREATE TABLE sessions
 (
     id         UUID PRIMARY KEY,
-    event_id   INTEGER      NOT NULL,
+    event_id   UUID         NOT NULL,
     title      VARCHAR(255) NOT NULL,
     start_time TIMESTAMP    NOT NULL,
     end_time   TIMESTAMP    NOT NULL,

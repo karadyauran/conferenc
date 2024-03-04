@@ -1,6 +1,23 @@
-# conferenc
+# 🎪 conferenc
 
-### Database Schema for Event Booking and Management Service
+EventBook is a dynamic web application designed for seamless event management and booking. It enables organizers to create, manage, and promote various events, while allowing attendees to easily find, book, and keep track of events. Incorporating features like user authentication, event categorization, booking management, and interactive event sessions, EventBook aims to streamline the event planning and participation process for all users.
+
+## 📦 Technologies
+The main stack of technologies:
+- `Java`
+- `Spring`
+- `PostgreSQL`
+- `RESTful API`
+- `Docker`
+
+## 👾 Installation
+
+```bash
+git clone https://github.com/karadyauran/conferenc.git
+cd conferenc
+```
+
+## ⨠ Database schema
 
 This schema defines the structure for a web-based application designed to manage event bookings and organization. Below are the SQL table definitions along with their purposes:
 
@@ -51,3 +68,13 @@ This schema defines the structure for a web-based application designed to manage
 - **`event_id`** and **`category_id`**: Composite Primary Key, linking to `events` and `event_categories` respectively.
 
 ![Database schema](assets/db_image.png)
+
+## 🤝 Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+1. Fork the `Project`
+2. Create your `Feature Branch (git checkout -b feature/AmazingFeature)`
+3. Commit your `Changes (git commit -m 'Add some AmazingFeature')`
+4. Push to the `Branch (git push origin feature/AmazingFeature)`
+5. Open a `Pull Request`

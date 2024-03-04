@@ -40,7 +40,7 @@ public class Booking
     int numberOfAttendees;
 
     @ManyToOne
-    User users;
+    User user;
 
     @ManyToOne
     Event event;

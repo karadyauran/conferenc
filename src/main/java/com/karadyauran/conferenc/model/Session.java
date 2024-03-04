@@ -31,10 +31,10 @@ public class Session
     UUID eventId;
 
     @Column(name = "start_time")
-    Timestamp startTime;
+    Timestamp start;
 
     @Column(name = "end_time")
-    Timestamp endTime;
+    Timestamp end;
 
     @Column(name = "speaker")
     String speaker;

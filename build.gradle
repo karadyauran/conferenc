@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.3'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'jacoco'
 }
 
 group = 'com.karadyauran'
@@ -21,15 +22,76 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    postgreVersion = '42.7.1'
+    nycodeVersion = '2.3.0'
+    jbcryptVersion = '0.4'
+    mapstuctVersion = '1.5.5.Final'
+    mapstuctProcessorVersion = '1.5.5.Final'
+    springDocVersion = '2.2.0'
+}
+
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
-    implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation 'org.springframework.boot:spring-boot-testcontainers'
+    testImplementation 'org.testcontainers:postgresql'
+
+    // Lombok for Simplifying Java Code
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    testImplementation group: 'com.h2database', name: 'h2', version: '2.2.224'
+
+    // Spring Boot Core Dependencies
+    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springDocVersion}"
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // PostgreSQL Database Dependencies
+    implementation group: 'org.postgresql', name: 'postgresql', version: postgreVersion
+
+    // Flyway for Database Version Control
+    implementation 'org.flywaydb:flyway-core'
+
+    // Password Hashing Dependencies
+    implementation "de.nycode:bcrypt:${nycodeVersion}"
+    implementation "org.mindrot:jbcrypt:${jbcryptVersion}"
+
+    // Testing Dependencies
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.security:spring-security-test'
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '5.10.0'
+    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.10.2'
+
+    // Docker
+    testImplementation 'org.testcontainers:junit-jupiter'
+    testImplementation 'org.testcontainers:postgresql'
+
+    // Mapper
+    implementation group: 'org.mapstruct', name: 'mapstruct', version: mapstuctVersion
+    annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: mapstuctProcessorVersion
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+test {
+    finalizedBy jacocoTestReport
+}
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            enabled = true
+            limit {
+                minimum = 0.25
+            }
+        }
+    }
+}
+jacocoTestReport {
+    dependsOn test
+}
+check {
+    dependsOn jacocoTestCoverageVerification
 }

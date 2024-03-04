@@ -20,7 +20,7 @@ CREATE TABLE events
     location     VARCHAR(255),
     capacity     INTEGER,
     is_public    BOOLEAN DEFAULT true,
-    FOREIGN KEY (organizer_id) REFERENCES users (id)
+    FOREIGN KEY (organizer_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- creating bookings table
@@ -31,8 +31,8 @@ CREATE TABLE bookings
     event_id            UUID NOT NULL,
     status              VARCHAR(50),
     number_of_attendees INTEGER DEFAULT 1,
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (event_id) REFERENCES events (id)
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- creating sessions table
@@ -45,7 +45,7 @@ CREATE TABLE sessions
     end_time   TIMESTAMP    NOT NULL,
     speaker    VARCHAR(255),
     location   VARCHAR(255),
-    FOREIGN KEY (event_id) REFERENCES events (id)
+    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- creating user_sessions table
@@ -55,8 +55,8 @@ CREATE TABLE user_sessions
     session_id UUID NOT NULL,
     status     VARCHAR(50),
     PRIMARY KEY (user_id, session_id),
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (session_id) REFERENCES sessions (id)
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (session_id) REFERENCES sessions (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- creating event_categories table
@@ -73,6 +73,6 @@ CREATE TABLE event_category_mapping
     event_id    UUID NOT NULL,
     category_id UUID NOT NULL,
     PRIMARY KEY (event_id, category_id),
-    FOREIGN KEY (event_id) REFERENCES events (id),
-    FOREIGN KEY (category_id) REFERENCES event_categories (id)
+    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (category_id) REFERENCES event_categories (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

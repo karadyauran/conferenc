@@ -40,8 +40,8 @@ public class User implements UserDetails
     @Column(name = "email")
     String email;
 
-    @Column(name = "email")
-    String password_hash;
+    @Column(name = "password_hash")
+    String password;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
@@ -78,32 +78,26 @@ public class User implements UserDetails
     }
 
     @Override
-    public String getPassword()
-    {
-        return password_hash;
-    }
-
-    @Override
     public boolean isAccountNonExpired()
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked()
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired()
     {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled()
     {
-        return false;
+        return true;
     }
 }

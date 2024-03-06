@@ -1,11 +1,11 @@
 -- creating users table
 CREATE TABLE users
 (
-    id            UUID PRIMARY KEY,
-    username      VARCHAR(255) UNIQUE NOT NULL,
-    email         VARCHAR(255) UNIQUE NOT NULL,
-    password_hash VARCHAR(255)        NOT NULL,
-    role          VARCHAR(50)         NOT NULL
+    id       UUID PRIMARY KEY,
+    username VARCHAR(255) UNIQUE NOT NULL,
+    email    VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255)        NOT NULL,
+    role     VARCHAR(50)         NOT NULL
 );
 
 -- creating events table
@@ -31,7 +31,7 @@ CREATE TABLE bookings
     event_id            UUID NOT NULL,
     status              VARCHAR(50),
     number_of_attendees INTEGER DEFAULT 1,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -55,7 +55,7 @@ CREATE TABLE user_sessions
     session_id UUID NOT NULL,
     status     VARCHAR(50),
     PRIMARY KEY (user_id, session_id),
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (session_id) REFERENCES sessions (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -73,6 +73,6 @@ CREATE TABLE event_category_mapping
     event_id    UUID NOT NULL,
     category_id UUID NOT NULL,
     PRIMARY KEY (event_id, category_id),
-    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE ,
+    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (category_id) REFERENCES event_categories (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

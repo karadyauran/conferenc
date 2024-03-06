@@ -1,6 +1,8 @@
 package com.karadyauran.conferenc.config;
 
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -15,10 +17,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthFilter;
-    private final AuthenticationProvider authenticationProvider;
+    JwtAuthenticationFilter jwtAuthFilter;
+    AuthenticationProvider authenticationProvider;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -38,7 +41,6 @@ public class SecurityConfig {
                                         new AntPathRequestMatcher("/api/registration"),
                                         new AntPathRequestMatcher("/api/authentication/login"),
 
-                                        //swagger
                                         new AntPathRequestMatcher("/v2/api-docs"),
                                         new AntPathRequestMatcher("/v3/api-docs"),
                                         new AntPathRequestMatcher("/v3/api-docs/**"),

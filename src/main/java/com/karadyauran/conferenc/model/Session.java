@@ -3,6 +3,7 @@ package com.karadyauran.conferenc.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -12,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -44,6 +46,9 @@ public class Session
 
     @OneToOne(mappedBy = "session")
     Event event;
+
+    @ManyToMany(mappedBy = "sessions")
+    private List<User> users;
 
     @Override
     public boolean equals(Object o)

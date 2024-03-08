@@ -1,11 +1,16 @@
 package com.karadyauran.conferenc.model;
 
 import com.karadyauran.conferenc.model.enums.Role;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -49,6 +54,12 @@ public class User implements UserDetails
 
     @OneToMany(mappedBy = "users")
     List<Booking> bookings;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "user_sessions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "session_id"))
+    private List<Session> sessions;
 
     @Override
     public boolean equals(Object o)

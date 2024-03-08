@@ -1,8 +1,13 @@
 package com.karadyauran.conferenc.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -12,6 +17,7 @@ import lombok.experimental.FieldDefaults;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -50,6 +56,12 @@ public class Event
 
     @OneToOne(mappedBy = "event")
     Session session;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinTable(name = "event_category_mapping",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<EventCategory> categories;
 
     @Override
     public boolean equals(Object o)

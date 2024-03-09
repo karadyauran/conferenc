@@ -24,7 +24,7 @@ public interface UserApi
     ResponseEntity<UserShortDto> findByUsername(@PathVariable String username);
 
     @PutMapping("/change/username/")
-    ResponseEntity<UserShortDto> changeUsername(@RequestParam UUID id, @RequestParam String username);
+    ResponseEntity<Void> changeUsername(@RequestParam UUID id, @RequestParam String username);
 
     @DeleteMapping("/delete/")
     ResponseEntity<Void> deleteById(@RequestParam UUID id);

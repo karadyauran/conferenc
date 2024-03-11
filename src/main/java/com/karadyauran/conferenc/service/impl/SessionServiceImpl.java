@@ -40,8 +40,6 @@ public class SessionServiceImpl implements SessionService
                 .speaker(session.getSpeaker())
                 .build();
 
-
-
         repository.save(obj);
     }
 

@@ -35,7 +35,6 @@ public class Event
     @Column(name = "id")
     UUID id;
 
-    @Id
     @Column(name = "organizer_id")
     UUID organizerId;
 
@@ -64,7 +63,7 @@ public class Event
     List<Booking> bookings;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "organizer_id")
+    @JoinColumn(name = "organizer_id", insertable = false, updatable = false)
     User organizer;
 
     @OneToOne(mappedBy = "event")
@@ -72,7 +71,8 @@ public class Event
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "event_category_mapping",
-            joinColumns = {@JoinColumn(name = "event_id"), @JoinColumn(name = "category_id")})
+            joinColumns = { @JoinColumn(name = "event_id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id") })
     private List<EventCategory> categories;
 
     @Override

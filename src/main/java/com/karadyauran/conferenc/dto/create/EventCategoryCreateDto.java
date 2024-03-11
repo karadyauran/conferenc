@@ -1,4 +1,4 @@
-package com.karadyauran.conferenc.dto.normal;
+package com.karadyauran.conferenc.dto.create;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +13,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class EventCategoryDto
+public class EventCategoryCreateDto
 {
     String name;
     String description;

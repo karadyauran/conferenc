@@ -14,4 +14,7 @@ public class ErrorMessage
 
     // EVENT
     public static final String EVENT_WAS_NOT_FOUND = "[EVENT] Event was not found!";
+
+    // EVENT CATEGORY
+    public static final String EVENT_CATEGORY_WAS_NOT_FOUND = "[EVENT CATEGORY] Event category was not found!";
 }

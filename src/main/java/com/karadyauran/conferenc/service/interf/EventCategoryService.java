@@ -1,16 +1,19 @@
 package com.karadyauran.conferenc.service.interf;
 
-import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
+import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
+import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
 
 import java.util.UUID;
 
 public interface EventCategoryService
 {
-    void create(EventCategoryDto category);
+    void create(EventCategoryCreateDto category);
 
-    EventCategoryDto findById(UUID id);
+    EventCategoryShortDto findById(UUID id);
 
-    void changeTitle(UUID id, String newTitle);
+    void changeName(UUID id, String newName);
+
+    void changeDescription(UUID id, String newDescription);
 
     void delete(UUID id);
 

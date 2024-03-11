@@ -24,9 +24,6 @@ public interface SessionApi
     @GetMapping("/find/id/")
     ResponseEntity<SessionDto> findById(@Uuid @RequestParam UUID id);
 
-    @PutMapping("/change/title")
-    ResponseEntity<Void> changeTitle(@Uuid @RequestParam UUID id, @RequestParam String newTitle);
-
     @PutMapping("/change/time/start")
     ResponseEntity<Void> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 

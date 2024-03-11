@@ -12,8 +12,6 @@ public interface SessionService
 
     SessionDto findById(UUID id);
 
-    void changeTitle(UUID id, String newTitle);
-
     void changeStartTime(UUID id, Timestamp newStart);
 
     void changeEndTime(UUID id, Timestamp newEnd);
@@ -25,4 +23,6 @@ public interface SessionService
     void delete(UUID id);
 
     boolean sessionIsNotExists(UUID id);
+
+    boolean userDoesNotExistsById(UUID id);
 }

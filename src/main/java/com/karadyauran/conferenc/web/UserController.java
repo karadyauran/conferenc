@@ -38,7 +38,7 @@ public class UserController implements UserApi, UserPage
                     required = true,
                     content = @Content(
                             mediaType = "application/json",
-                            schema = @Schema(implementation = UserCreateDto.class)
+                            schema = @Schema(implementation = UserDto.class)
                     )
             ),
             responses = {
@@ -58,7 +58,7 @@ public class UserController implements UserApi, UserPage
     }
 
     @Operation(summary = "Finds user by user id",
-            description = "Finds the user, converts it to UserDto and returns",
+            description = "Finds user, converts it to UserDto and returns",
             responses = {
                     @ApiResponse(responseCode = "200",
                             description = "All its great"),
@@ -96,7 +96,7 @@ public class UserController implements UserApi, UserPage
     }
 
     @Operation(summary = "Change username",
-            description = "Changing the user's username",
+            description = "Changing user's username",
             responses = {
                     @ApiResponse(responseCode = "200",
                             description = "All its great"),
@@ -124,7 +124,8 @@ public class UserController implements UserApi, UserPage
                             description = "User was not found"),
                     @ApiResponse(responseCode = "500",
                             description = "Something wrong")
-            })
+            }
+    )
     @Override
     public ResponseEntity<Void> deleteById(UUID id)
     {

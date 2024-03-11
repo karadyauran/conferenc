@@ -23,7 +23,7 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
-@Tag(name = "SESSION", description = "Operations related to session in the system")
+@Tag(name = "EVENT CATEGORY", description = "Operations related to event category in the system")
 public class EventCategoryController implements EventCategoryApi
 {
     EventCategoryService service;
@@ -42,7 +42,7 @@ public class EventCategoryController implements EventCategoryApi
                     @ApiResponse(responseCode = "200",
                             description = "All its great"),
                     @ApiResponse(responseCode = "404",
-                            description = "User was not created, because username is already taken"),
+                            description = "Event category was not created"),
                     @ApiResponse(responseCode = "500",
                             description = "Something wrong")
             }

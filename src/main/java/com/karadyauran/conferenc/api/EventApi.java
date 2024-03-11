@@ -30,10 +30,10 @@ public interface EventApi
     ResponseEntity<List<EventDto>> findByUserId(@Uuid @RequestParam UUID user);
 
     @PutMapping("/change/title")
-    ResponseEntity<String> changeTitle(@Uuid @RequestParam UUID id, @RequestParam Status newTitle);
+    ResponseEntity<String> changeTitle(@Uuid @RequestParam UUID id, @RequestParam String newTitle);
 
     @PutMapping("/change/description")
-    ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam Status newDescription);
+    ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam String newDescription);
 
     @PutMapping("/change/time/start")
     ResponseEntity<String> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
@@ -45,7 +45,7 @@ public interface EventApi
     ResponseEntity<String> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
     @PutMapping("/change/capacity")
-    ResponseEntity<String> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newLocation);
+    ResponseEntity<String> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newCapacity);
 
     @DeleteMapping("/delete/")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);

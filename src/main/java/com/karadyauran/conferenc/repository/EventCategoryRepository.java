@@ -16,6 +16,6 @@ public interface EventCategoryRepository extends JpaRepository<EventCategory, UU
     void changeName(UUID id, String newName);
 
     @Modifying
-    @Query("update EventCategory e set e.description = :description where e.id = :id")
+    @Query("update EventCategory e set e.description = :newDescription where e.id = :id")
     void changeDescription(UUID id, String newDescription);
 }

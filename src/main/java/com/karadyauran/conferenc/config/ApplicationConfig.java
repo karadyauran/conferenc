@@ -1,7 +1,7 @@
 package com.karadyauran.conferenc.config;
 
-import com.karadyauran.conferenc.exceptions.ErrorMessage;
-import com.karadyauran.conferenc.exceptions.UserNotFoundException;
+import com.karadyauran.conferenc.error.UsernameWasNotFoundException;
+import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.repository.UserRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,7 @@ public class ApplicationConfig
     public UserDetailsService userDetailsService()
     {
         return username -> repository.findUserByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException(ErrorMessage.USER_NOT_FOUND));
+                .orElseThrow(() -> new UsernameWasNotFoundException(ErrorMessage.USERNAME_WAS_NOT_FOUND));
     }
 
     @Bean

@@ -11,4 +11,7 @@ public class ErrorMessage
 
     // SESSION
     public static final String SESSION_WAS_NOT_FOUND = "[SESSION] Session was not found!";
+
+    // EVENT
+    public static final String EVENT_WAS_NOT_FOUND = "[EVENT] Event was not found!";
 }

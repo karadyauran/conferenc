@@ -3,10 +3,11 @@ package com.karadyauran.conferenc.service.impl;
 import com.karadyauran.conferenc.dto.create.UserCreateDto;
 import com.karadyauran.conferenc.dto.shorted.UserShortDto;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
-import com.karadyauran.conferenc.error.UsernameIsAlreadyExists;
+import com.karadyauran.conferenc.error.UsernameIsAlreadyExistsException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.UserShortMapper;
 import com.karadyauran.conferenc.model.User;
+import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.repository.UserRepository;
 import com.karadyauran.conferenc.service.interf.UserService;
 import lombok.AccessLevel;
@@ -43,7 +44,7 @@ public class UserServiceImpl implements UserService
 
         if (userAlreadyExists(user.getUsername()))
         {
-            throw new UsernameIsAlreadyExists(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
+            throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
 
         var obj = User.builder()
@@ -52,6 +53,7 @@ public class UserServiceImpl implements UserService
                 .password(
                         passwordEncoder.encode(user.getPassword())
                 )
+                .role(Role.valueOf(user.getRole()))
                 .build();
 
         repository.save(obj);
@@ -94,7 +96,7 @@ public class UserServiceImpl implements UserService
 
         if (userAlreadyExists(username))
         {
-            throw new UsernameIsAlreadyExists(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
+            throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
     }
 

@@ -19,7 +19,7 @@ import java.util.UUID;
 public interface UserApi
 {
     @PostMapping("/append/")
-    ResponseEntity<Void> create(@RequestBody UserCreateDto user);
+    ResponseEntity<String> create(@RequestBody UserCreateDto user);
 
     @GetMapping("/}")
     ResponseEntity<UserDto> findById(@RequestParam UUID id);
@@ -28,8 +28,8 @@ public interface UserApi
     ResponseEntity<UserDto> findByUsername(@PathVariable String username);
 
     @PutMapping("/change/username/")
-    ResponseEntity<Void> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
+    ResponseEntity<String> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> deleteById(@Uuid @RequestParam UUID id);
+    ResponseEntity<String> deleteById(@Uuid @RequestParam UUID id);
 }

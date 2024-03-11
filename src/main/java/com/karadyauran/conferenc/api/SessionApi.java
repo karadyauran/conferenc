@@ -19,23 +19,23 @@ import java.util.UUID;
 public interface SessionApi
 {
     @PostMapping("/append/")
-    ResponseEntity<Void> create(@RequestBody SessionCreateDto session);
+    ResponseEntity<String> create(@RequestBody SessionCreateDto session);
 
     @GetMapping("/find/id/")
     ResponseEntity<SessionDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/change/time/start")
-    ResponseEntity<Void> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
+    ResponseEntity<String> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 
     @PutMapping("/change/time/end")
-    ResponseEntity<Void> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
+    ResponseEntity<String> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
 
     @PutMapping("/change/speaker")
-    ResponseEntity<Void> changeSpeaker(@Uuid @RequestParam UUID id, @RequestParam String newSpeaker);
+    ResponseEntity<String> changeSpeaker(@Uuid @RequestParam UUID id, @RequestParam String newSpeaker);
 
     @PutMapping("/change/location")
-    ResponseEntity<Void> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
+    ResponseEntity<String> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> delete(@Uuid @RequestParam UUID id);
+    ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

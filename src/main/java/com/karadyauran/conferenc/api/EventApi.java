@@ -21,7 +21,7 @@ import java.util.UUID;
 public interface EventApi
 {
     @PostMapping("/append/")
-    ResponseEntity<Void> create(@RequestBody EventCreateDto event);
+    ResponseEntity<String> create(@RequestBody EventCreateDto event);
 
     @GetMapping("/find/id/")
     ResponseEntity<EventDto> findById(@Uuid @RequestParam UUID id);
@@ -30,23 +30,23 @@ public interface EventApi
     ResponseEntity<List<EventDto>> findByUserId(@Uuid @RequestParam UUID user);
 
     @PutMapping("/change/title")
-    ResponseEntity<Void> changeTitle(@Uuid @RequestParam UUID id, @RequestParam Status newTitle);
+    ResponseEntity<String> changeTitle(@Uuid @RequestParam UUID id, @RequestParam Status newTitle);
 
     @PutMapping("/change/description")
-    ResponseEntity<Void> changeDescription(@Uuid @RequestParam UUID id, @RequestParam Status newDescription);
+    ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam Status newDescription);
 
     @PutMapping("/change/time/start")
-    ResponseEntity<Void> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
+    ResponseEntity<String> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 
     @PutMapping("/change/time/end")
-    ResponseEntity<Void> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
+    ResponseEntity<String> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
 
     @PutMapping("/change/location")
-    ResponseEntity<Void> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
+    ResponseEntity<String> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
     @PutMapping("/change/capacity")
-    ResponseEntity<Void> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newLocation);
+    ResponseEntity<String> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newLocation);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> delete(@Uuid @RequestParam UUID id);
+    ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

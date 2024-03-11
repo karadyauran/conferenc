@@ -2,7 +2,6 @@ package com.karadyauran.conferenc.dto.normal;
 
 import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
 import com.karadyauran.conferenc.dto.shorted.UserShortDto;
-import com.karadyauran.conferenc.model.EventCategory;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

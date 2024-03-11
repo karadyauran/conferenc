@@ -2,7 +2,6 @@ package com.karadyauran.conferenc.service.interf;
 
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
-import com.karadyauran.conferenc.model.EventCategory;
 
 import java.sql.Timestamp;
 import java.util.List;

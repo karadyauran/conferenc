@@ -1,7 +1,6 @@
 package com.karadyauran.conferenc.mapper;
 
 import com.karadyauran.conferenc.dto.create.SessionCreateDto;
-import com.karadyauran.conferenc.dto.normal.SessionDto;
 import com.karadyauran.conferenc.model.Session;
 import org.mapstruct.Mapper;
 

@@ -32,7 +32,7 @@ public class Session
     @Column(name = "id")
     UUID id;
 
-    @Column(name = "event_id", insertable=false, updatable=false)
+    @Column(name = "event_id", insertable = false, updatable = false)
     UUID eventId;
 
     @Column(name = "start_time")

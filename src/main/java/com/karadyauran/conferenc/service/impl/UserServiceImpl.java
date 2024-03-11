@@ -1,11 +1,11 @@
 package com.karadyauran.conferenc.service.impl;
 
 import com.karadyauran.conferenc.dto.create.UserCreateDto;
-import com.karadyauran.conferenc.dto.shorted.UserShortDto;
+import com.karadyauran.conferenc.dto.normal.UserDto;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UsernameIsAlreadyExistsException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
-import com.karadyauran.conferenc.mapper.UserShortMapper;
+import com.karadyauran.conferenc.mapper.UserMapper;
 import com.karadyauran.conferenc.model.User;
 import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.repository.UserRepository;
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService
 
     UserRepository repository;
 
-    UserShortMapper shortMapper;
+    UserMapper mapper;
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
@@ -63,11 +63,11 @@ public class UserServiceImpl implements UserService
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public UserShortDto findById(UUID id)
+    public UserDto findById(UUID id)
     {
         log.debug("Looking for the user with id {}", id);
 
-        return shortMapper.toDto(
+        return mapper.toDto(
                 repository.findById(id)
                         .orElseThrow(() -> new UserIdWasNotFoundException(ErrorMessage.USER_ID_WAS_NOT_FOUND))
         );
@@ -75,11 +75,11 @@ public class UserServiceImpl implements UserService
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public UserShortDto findByUsername(String username)
+    public UserDto findByUsername(String username)
     {
         log.debug("Looking for the user with username {}", username);
 
-        return shortMapper.toDto(
+        return mapper.toDto(
                 repository.findUserByUsername(username)
                         .orElseThrow(() -> new UserIdWasNotFoundException(ErrorMessage.USERNAME_WAS_NOT_FOUND))
         );

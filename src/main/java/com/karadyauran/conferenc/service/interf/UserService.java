@@ -15,6 +15,8 @@ public interface UserService
 
     void changeUsername(UUID id, String username);
 
+    void changeEmail(UUID id, String email);
+
     void delete(UUID id);
 
     boolean userDoesNotExistsById(UUID id);
@@ -22,4 +24,6 @@ public interface UserService
     boolean userDoesNotExistsByUsername(String username);
 
     boolean userAlreadyExists(String username);
+
+    boolean emailIsAlreadyTaken(String email);
 }

@@ -12,13 +12,17 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends JpaRepository<User, UUID>
 {
-    @Query("SELECT u FROM User u WHERE u.username = :username")
     Optional<User> findUserByUsername(String username);
 
     boolean existsByUsername(String username);
 
+    boolean existsByEmail(String email);
 
     @Modifying
     @Query("update User u set u.username = :username where u.id = :id")
     void changeUsername(UUID id, String username);
+
+    @Modifying
+    @Query("update User u set u.email = :email where u.id = :id")
+    void changeEmail(UUID id, String email);
 }

@@ -2,6 +2,7 @@ package com.karadyauran.conferenc.service.impl;
 
 import com.karadyauran.conferenc.dto.create.UserCreateDto;
 import com.karadyauran.conferenc.dto.normal.UserDto;
+import com.karadyauran.conferenc.error.EmailIsAlreadyTakenException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UsernameIsAlreadyExistsException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
@@ -47,6 +48,11 @@ public class UserServiceImpl implements UserService
         if (userAlreadyExists(user.getUsername()))
         {
             throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
+        }
+
+        if (emailIsAlreadyTaken(user.getEmail()))
+        {
+            throw new EmailIsAlreadyTakenException(ErrorMessage.EMAIL_IS_ALREADY_TAKEN);
         }
 
         var obj = User.builder()
@@ -103,6 +109,17 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    public void changeEmail(UUID id, String email)
+    {
+        if (emailIsAlreadyTaken(email))
+        {
+            throw new EmailIsAlreadyTakenException(ErrorMessage.EMAIL_IS_ALREADY_TAKEN);
+        }
+
+
+    }
+
+    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(UUID id)
     {
@@ -132,5 +149,11 @@ public class UserServiceImpl implements UserService
     public boolean userAlreadyExists(String username)
     {
         return repository.existsByUsername(username);
+    }
+
+    @Override
+    public boolean emailIsAlreadyTaken(String email)
+    {
+        return repository.existsByEmail(email);
     }
 }

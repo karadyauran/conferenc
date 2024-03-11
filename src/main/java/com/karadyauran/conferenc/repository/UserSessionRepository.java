@@ -6,10 +6,13 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 @Repository
-public interface UserSessionRepository /*extends JpaRepository<UserSession, UserSession.UserSessionId>*/
+public interface UserSessionRepository extends JpaRepository<UserSession, UserSession.UserSessionId>
 {
-    /*@Modifying
+    @Modifying
     @Query(value = "INSERT INTO UserSession (user_id, session_id, status) VALUES (:userId, :sessionId, :status)", nativeQuery = true)
-    void recordChanging();*/
+    void recordChanging(UUID userId, UUID sessionId, String status);
 }
+

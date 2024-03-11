@@ -4,11 +4,11 @@ import com.karadyauran.conferenc.dto.create.SessionCreateDto;
 import com.karadyauran.conferenc.dto.normal.SessionDto;
 import com.karadyauran.conferenc.error.SessionWasNotFoundException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
-import com.karadyauran.conferenc.mapper.SessionCreateMapper;
 import com.karadyauran.conferenc.mapper.SessionMapper;
 import com.karadyauran.conferenc.model.Session;
 import com.karadyauran.conferenc.repository.SessionRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
+import com.karadyauran.conferenc.repository.UserSessionRepository;
 import com.karadyauran.conferenc.service.interf.SessionService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +27,7 @@ public class SessionServiceImpl implements SessionService
 {
     SessionRepository repository;
     UserRepository userRepository;
+    UserSessionRepository userSessionRepository;
 
     SessionMapper mapper;
 
@@ -39,6 +40,12 @@ public class SessionServiceImpl implements SessionService
                 .end(session.getEnd())
                 .speaker(session.getSpeaker())
                 .build();
+
+        userSessionRepository.recordChanging(
+                session.getUserId(),
+                session.getEventId(),
+                session.getStatus()
+        );
 
         repository.save(obj);
     }

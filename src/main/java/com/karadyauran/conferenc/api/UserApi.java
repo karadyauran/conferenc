@@ -18,7 +18,7 @@ import java.util.UUID;
 @RequestMapping("/api/user")
 public interface UserApi
 {
-    @PostMapping("/append/")
+    @PostMapping("/register")
     ResponseEntity<String> create(@RequestBody UserCreateDto user);
 
     @GetMapping("/")

@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -32,6 +34,7 @@ public class SessionServiceImpl implements SessionService
     SessionMapper mapper;
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void create(SessionCreateDto session)
     {
         if (session == null)
@@ -58,6 +61,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public SessionDto findById(UUID id)
     {
         log.debug("Looking for session with id {}", id);
@@ -69,6 +73,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeStartTime(UUID id, Timestamp newStart)
     {
         log.debug("Changing start time for session with id {}", id);
@@ -82,6 +87,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeEndTime(UUID id, Timestamp newEnd)
     {
         log.debug("Changing end time for session with id {}", id);
@@ -95,6 +101,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeSpeaker(UUID id, String newSpeaker)
     {
         log.debug("Changing speaker for session with id {}", id);
@@ -108,6 +115,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeLocation(UUID id, String newLocation)
     {
         log.debug("Changing location for session with id {}", id);
@@ -121,6 +129,7 @@ public class SessionServiceImpl implements SessionService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(UUID id)
     {
         log.debug("Deleting session with id {}", id);

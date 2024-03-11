@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -35,6 +37,7 @@ public class EventServiceImpl implements EventService
     EvenCreateMapper createMapper;
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void create(EventCreateDto event)
     {
         log.debug("Creating event by organizer id {}", event.getOrganizerId());
@@ -50,6 +53,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public EventDto findById(UUID id)
     {
         log.debug("Looking for event with id {}", id);
@@ -61,6 +65,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public List<EventDto> findByUserId(UUID user)
     {
         log.debug("Looking for events for user with id {}", user);
@@ -72,6 +77,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void addCategory(UUID id, UUID category)
     {
         log.debug("Adding category {} to event {}", category, id);
@@ -80,6 +86,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeOrganizer(UUID id, UUID newOrganizer)
     {
         log.debug("Changing organizer for event with id {}", id);
@@ -93,6 +100,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeTitle(UUID id, String newTitle)
     {
         log.debug("Changing title for event with id {}", id);
@@ -106,6 +114,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeDescription(UUID id, String newDescription)
     {
         if (eventDoesNotExists(id))
@@ -117,6 +126,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeStartTime(UUID id, Timestamp newStart)
     {
         log.debug("Changing start time for event with id {}", id);
@@ -130,6 +140,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeEndTime(UUID id, Timestamp newEnd)
     {
         log.debug("Changing end time for event with id {}", id);
@@ -143,6 +154,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeLocation(UUID id, String newLocation)
     {
         log.debug("Changing location for event with id {}", id);
@@ -156,6 +168,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeCapacity(UUID id, Integer newCapacity)
     {
         log.debug("Changing capacity for event with id {}", id);
@@ -169,6 +182,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(UUID id)
     {
         log.debug("Deleting event with id {}", id);

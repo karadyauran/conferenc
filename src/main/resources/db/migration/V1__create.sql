@@ -54,7 +54,6 @@ CREATE TABLE user_sessions
     user_id    UUID NOT NULL,
     session_id UUID NOT NULL,
     status     VARCHAR(50),
-    PRIMARY KEY (user_id, session_id),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (session_id) REFERENCES sessions (id) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -72,7 +71,6 @@ CREATE TABLE event_category_mapping
 (
     event_id    UUID NOT NULL,
     category_id UUID NOT NULL,
-    PRIMARY KEY (event_id, category_id),
     FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (category_id) REFERENCES event_categories (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

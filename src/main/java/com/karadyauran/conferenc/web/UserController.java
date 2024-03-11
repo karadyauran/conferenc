@@ -51,10 +51,10 @@ public class UserController implements UserApi, UserPage
             }
     )
     @Override
-    public ResponseEntity<Void> create(UserCreateDto user)
+    public ResponseEntity<String> create(UserCreateDto user)
     {
         service.create(user);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Finds user by user id",
@@ -107,10 +107,10 @@ public class UserController implements UserApi, UserPage
             }
     )
     @Override
-    public ResponseEntity<Void> changeUsername(UUID id, String username)
+    public ResponseEntity<String> changeUsername(UUID id, String username)
     {
         service.changeUsername(id, username);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Delete user",
@@ -127,9 +127,9 @@ public class UserController implements UserApi, UserPage
             }
     )
     @Override
-    public ResponseEntity<Void> deleteById(UUID id)
+    public ResponseEntity<String> deleteById(UUID id)
     {
         service.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 }

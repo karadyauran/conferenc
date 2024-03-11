@@ -49,10 +49,10 @@ public class SessionController implements SessionApi
             }
     )
     @Override
-    public ResponseEntity<Void> create(SessionCreateDto session)
+    public ResponseEntity<String> create(SessionCreateDto session)
     {
         service.create(session);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Finds session by session id",
@@ -86,10 +86,10 @@ public class SessionController implements SessionApi
             }
     )
     @Override
-    public ResponseEntity<Void> changeStartTime(UUID id, Timestamp newStart)
+    public ResponseEntity<String> changeStartTime(UUID id, Timestamp newStart)
     {
         service.changeStartTime(id, newStart);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Change end time",
@@ -104,10 +104,10 @@ public class SessionController implements SessionApi
             }
     )
     @Override
-    public ResponseEntity<Void> changeEndTime(UUID id, Timestamp newEnd)
+    public ResponseEntity<String> changeEndTime(UUID id, Timestamp newEnd)
     {
         service.changeEndTime(id, newEnd);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Change speaker",
@@ -122,10 +122,10 @@ public class SessionController implements SessionApi
             }
     )
     @Override
-    public ResponseEntity<Void> changeSpeaker(UUID id, String newSpeaker)
+    public ResponseEntity<String> changeSpeaker(UUID id, String newSpeaker)
     {
         service.changeSpeaker(id, newSpeaker);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Change location",
@@ -140,10 +140,10 @@ public class SessionController implements SessionApi
             }
     )
     @Override
-    public ResponseEntity<Void> changeLocation(UUID id, String newLocation)
+    public ResponseEntity<String> changeLocation(UUID id, String newLocation)
     {
         service.changeLocation(id, newLocation);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 
     @Operation(summary = "Delete session",
@@ -160,9 +160,9 @@ public class SessionController implements SessionApi
             }
     )
     @Override
-    public ResponseEntity<Void> delete(UUID id)
+    public ResponseEntity<String> delete(UUID id)
     {
         service.delete(id);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Success");
     }
 }

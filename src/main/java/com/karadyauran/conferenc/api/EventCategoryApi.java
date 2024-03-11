@@ -24,7 +24,10 @@ public interface EventCategoryApi
     ResponseEntity<EventCategoryShortDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/change/name")
-    ResponseEntity<String> changeTitle(@Uuid @RequestParam UUID id, @RequestParam String newName);
+    ResponseEntity<String> changeName(@Uuid @RequestParam UUID id, @RequestParam String newName);
+
+    @PutMapping("/change/description")
+    ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam String newDescription);
 
     @DeleteMapping("/delete/")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);

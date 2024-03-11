@@ -1,9 +1,12 @@
 package com.karadyauran.conferenc.model;
 
 import com.karadyauran.conferenc.model.enums.Status;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -27,10 +30,10 @@ public class Booking
     @Column(name = "id")
     UUID id;
 
-    @Column(name = "user_id")
+    @Column(name = "user_id", insertable=false, updatable=false)
     UUID userId;
 
-    @Column(name = "event_id")
+    @Column(name = "event_id", insertable=false, updatable=false)
     UUID eventId;
 
     @Column(name = "status")
@@ -39,10 +42,12 @@ public class Booking
     @Column(name = "number_of_attendees")
     int numberOfAttendees;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     User user;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
     Event event;
 
     @Override

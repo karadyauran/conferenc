@@ -20,4 +20,6 @@ public interface BookingService
     void delete(UUID id);
 
     boolean bookingDoesNotExists(UUID id);
+
+    boolean userDoesNotExists(UUID id);
 }

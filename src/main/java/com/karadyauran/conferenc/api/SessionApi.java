@@ -2,6 +2,7 @@ package com.karadyauran.conferenc.api;
 
 import com.karadyauran.conferenc.dto.create.SessionCreateDto;
 import com.karadyauran.conferenc.dto.normal.SessionDto;
+import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,23 +22,23 @@ public interface SessionApi
     ResponseEntity<Void> create(@RequestBody SessionCreateDto session);
 
     @GetMapping("/find/id/")
-    ResponseEntity<SessionDto> findById(@RequestParam UUID id);
+    ResponseEntity<SessionDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/change/title")
-    ResponseEntity<Void> changeTitle(@RequestParam UUID id, @RequestParam String newTitle);
+    ResponseEntity<Void> changeTitle(@Uuid @RequestParam UUID id, @RequestParam String newTitle);
 
     @PutMapping("/change/time/start")
-    ResponseEntity<Void> changeStartTime(@RequestParam UUID id, @RequestParam Timestamp newStart);
+    ResponseEntity<Void> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 
     @PutMapping("/change/time/end")
-    ResponseEntity<Void> changeEndTime(@RequestParam UUID id, @RequestParam Timestamp newEnd);
+    ResponseEntity<Void> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
 
     @PutMapping("/change/speaker")
-    ResponseEntity<Void> changeSpeaker(@RequestParam UUID id, @RequestParam String newSpeaker);
+    ResponseEntity<Void> changeSpeaker(@Uuid @RequestParam UUID id, @RequestParam String newSpeaker);
 
     @PutMapping("/change/location")
-    ResponseEntity<Void> changeLocation(@RequestParam UUID id, @RequestParam String newLocation);
+    ResponseEntity<Void> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> delete(@RequestParam UUID id);
+    ResponseEntity<Void> delete(@Uuid @RequestParam UUID id);
 }

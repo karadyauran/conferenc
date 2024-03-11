@@ -3,6 +3,7 @@ package com.karadyauran.conferenc.api;
 import com.karadyauran.conferenc.dto.create.BookingCreateDto;
 import com.karadyauran.conferenc.dto.normal.BookingDto;
 import com.karadyauran.conferenc.model.enums.Status;
+import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +23,14 @@ public interface BookingApi
     ResponseEntity<Void> create(@RequestBody BookingCreateDto booking);
 
     @GetMapping("/find/id/")
-    ResponseEntity<BookingDto> findById(@RequestParam UUID id);
+    ResponseEntity<BookingDto> findById(@Uuid @RequestParam UUID id);
 
     @GetMapping("/find/user/")
-    ResponseEntity<List<BookingDto>> findByUserId(@RequestParam UUID user);
+    ResponseEntity<List<BookingDto>> findByUserId(@Uuid @RequestParam UUID user);
 
     @PutMapping("/change/status")
-    ResponseEntity<Void> changeStatus(@RequestParam UUID id, @RequestParam Status newStatus);
+    ResponseEntity<Void> changeStatus(@Uuid @RequestParam UUID id, @RequestParam Status newStatus);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> delete(@RequestParam UUID id);
+    ResponseEntity<Void> delete(@Uuid @RequestParam UUID id);
 }

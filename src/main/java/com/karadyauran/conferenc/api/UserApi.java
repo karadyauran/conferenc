@@ -2,6 +2,7 @@ package com.karadyauran.conferenc.api;
 
 import com.karadyauran.conferenc.dto.create.UserCreateDto;
 import com.karadyauran.conferenc.dto.shorted.UserShortDto;
+import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,8 @@ public interface UserApi
     ResponseEntity<UserShortDto> findByUsername(@PathVariable String username);
 
     @PutMapping("/change/username/")
-    ResponseEntity<Void> changeUsername(@RequestParam UUID id, @RequestParam String username);
+    ResponseEntity<Void> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> deleteById(@RequestParam UUID id);
+    ResponseEntity<Void> deleteById(@Uuid @RequestParam UUID id);
 }

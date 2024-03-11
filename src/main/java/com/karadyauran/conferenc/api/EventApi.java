@@ -3,6 +3,7 @@ package com.karadyauran.conferenc.api;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.model.enums.Status;
+import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,29 +24,29 @@ public interface EventApi
     ResponseEntity<Void> create(@RequestBody EventCreateDto event);
 
     @GetMapping("/find/id/")
-    ResponseEntity<EventDto> findById(@RequestParam UUID id);
+    ResponseEntity<EventDto> findById(@Uuid @RequestParam UUID id);
 
     @GetMapping("/find/user/")
-    ResponseEntity<List<EventDto>> findByUserId(@RequestParam UUID user);
+    ResponseEntity<List<EventDto>> findByUserId(@Uuid @RequestParam UUID user);
 
     @PutMapping("/change/title")
-    ResponseEntity<Void> changeTitle(@RequestParam UUID id, @RequestParam Status newTitle);
+    ResponseEntity<Void> changeTitle(@Uuid @RequestParam UUID id, @RequestParam Status newTitle);
 
     @PutMapping("/change/description")
-    ResponseEntity<Void> changeDescription(@RequestParam UUID id, @RequestParam Status newDescription);
+    ResponseEntity<Void> changeDescription(@Uuid @RequestParam UUID id, @RequestParam Status newDescription);
 
     @PutMapping("/change/time/start")
-    ResponseEntity<Void> changeStartTime(@RequestParam UUID id, @RequestParam Timestamp newStart);
+    ResponseEntity<Void> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 
     @PutMapping("/change/time/end")
-    ResponseEntity<Void> changeEndTime(@RequestParam UUID id, @RequestParam Timestamp newEnd);
+    ResponseEntity<Void> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
 
     @PutMapping("/change/location")
-    ResponseEntity<Void> changeLocation(@RequestParam UUID id, @RequestParam String newLocation);
+    ResponseEntity<Void> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
     @PutMapping("/change/capacity")
-    ResponseEntity<Void> changeCapacity(@RequestParam UUID id, @RequestParam Integer newLocation);
+    ResponseEntity<Void> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newLocation);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> delete(@RequestParam UUID id);
+    ResponseEntity<Void> delete(@Uuid @RequestParam UUID id);
 }

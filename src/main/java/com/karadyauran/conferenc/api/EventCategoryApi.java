@@ -1,6 +1,7 @@
 package com.karadyauran.conferenc.api;
 
 import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
+import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,11 +20,11 @@ public interface EventCategoryApi
     ResponseEntity<Void> create(@RequestBody EventCategoryDto category);
 
     @GetMapping("/find/id/")
-    ResponseEntity<EventCategoryDto> findById(@RequestParam UUID id);
+    ResponseEntity<EventCategoryDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/change/name")
-    ResponseEntity<Void> changeTitle(@RequestParam UUID id, @RequestParam String newName);
+    ResponseEntity<Void> changeTitle(@Uuid @RequestParam UUID id, @RequestParam String newName);
 
     @DeleteMapping("/delete/")
-    ResponseEntity<Void> delete(@RequestParam UUID id);
+    ResponseEntity<Void> delete(@Uuid @RequestParam UUID id);
 }

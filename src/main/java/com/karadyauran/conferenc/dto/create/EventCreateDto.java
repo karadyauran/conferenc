@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 @ToString
 public class EventCreateDto
 {
+    UUID organizerId;
     String title;
     String description;
     Timestamp start;

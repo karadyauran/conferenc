@@ -1,5 +1,6 @@
 package com.karadyauran.conferenc.service.interf;
 
+import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.model.EventCategory;
 
@@ -9,11 +10,13 @@ import java.util.UUID;
 
 public interface EventService
 {
-    void create(EventCategory category);
+    void create(EventCreateDto event);
 
     EventDto findById(UUID id);
 
     List<EventDto> findByUserId(UUID user);
+
+    void changeOrganizer(UUID id, UUID newOrganizer);
 
     void changeTitle(UUID id, String newTitle);
 

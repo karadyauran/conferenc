@@ -8,6 +8,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -33,6 +35,10 @@ public class Event
     @Column(name = "id")
     UUID id;
 
+    @Id
+    @Column(name = "organizer_id")
+    UUID organizerId;
+
     @Column(name = "title")
     String title;
 
@@ -54,13 +60,19 @@ public class Event
     @Column(name = "is_public")
     boolean isPublic;
 
+    @OneToMany(mappedBy = "event")
+    List<Booking> bookings;
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "organizer_id")
+    User organizer;
+
     @OneToOne(mappedBy = "event")
     Session session;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "event_category_mapping",
-            joinColumns = @JoinColumn(name = "event_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id"))
+            joinColumns = {@JoinColumn(name = "event_id"), @JoinColumn(name = "category_id")})
     private List<EventCategory> categories;
 
     @Override

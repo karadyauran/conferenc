@@ -1,5 +1,6 @@
 package com.karadyauran.conferenc.dto.normal;
 
+import com.karadyauran.conferenc.dto.shorted.UserShortDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.sql.Timestamp;
 @ToString
 public class EventDto
 {
+    UserShortDto organizer;
     String title;
     String description;
     Timestamp start;

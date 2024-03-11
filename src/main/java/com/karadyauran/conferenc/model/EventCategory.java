@@ -3,6 +3,8 @@ package com.karadyauran.conferenc.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
@@ -17,7 +19,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "sessions")
+@Table(name = "event_categories")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class EventCategory

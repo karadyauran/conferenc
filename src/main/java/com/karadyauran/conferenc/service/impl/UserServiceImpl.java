@@ -42,6 +42,8 @@ public class UserServiceImpl implements UserService
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
         }
 
+        log.debug("Creating user with username {}", user.getUsername());
+
         if (userAlreadyExists(user.getUsername()))
         {
             throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);

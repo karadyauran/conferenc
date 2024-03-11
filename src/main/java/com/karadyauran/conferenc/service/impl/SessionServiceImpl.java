@@ -34,6 +34,13 @@ public class SessionServiceImpl implements SessionService
     @Override
     public void create(SessionCreateDto session)
     {
+        if (session == null)
+        {
+            throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
+        }
+
+        log.debug("Creating session for event {}", session.getEventId());
+
         var obj = Session.builder()
                 .eventId(session.getEventId())
                 .start(session.getStart())
@@ -53,6 +60,8 @@ public class SessionServiceImpl implements SessionService
     @Override
     public SessionDto findById(UUID id)
     {
+        log.debug("Looking for session with id {}", id);
+
         return mapper.toDto(
                 repository.findById(id)
                         .orElseThrow(() -> new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND))
@@ -62,6 +71,8 @@ public class SessionServiceImpl implements SessionService
     @Override
     public void changeStartTime(UUID id, Timestamp newStart)
     {
+        log.debug("Changing start time for session with id {}", id);
+
         if (sessionIsNotExists(id))
         {
             throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
@@ -73,6 +84,8 @@ public class SessionServiceImpl implements SessionService
     @Override
     public void changeEndTime(UUID id, Timestamp newEnd)
     {
+        log.debug("Changing end time for session with id {}", id);
+
         if (sessionIsNotExists(id))
         {
             throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
@@ -84,6 +97,8 @@ public class SessionServiceImpl implements SessionService
     @Override
     public void changeSpeaker(UUID id, String newSpeaker)
     {
+        log.debug("Changing speaker for session with id {}", id);
+
         if (sessionIsNotExists(id))
         {
             throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
@@ -95,6 +110,8 @@ public class SessionServiceImpl implements SessionService
     @Override
     public void changeLocation(UUID id, String newLocation)
     {
+        log.debug("Changing location for session with id {}", id);
+
         if (sessionIsNotExists(id))
         {
             throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
@@ -106,6 +123,8 @@ public class SessionServiceImpl implements SessionService
     @Override
     public void delete(UUID id)
     {
+        log.debug("Deleting session with id {}", id);
+
         if (sessionIsNotExists(id))
         {
             throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);

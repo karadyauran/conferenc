@@ -37,6 +37,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void create(EventCreateDto event)
     {
+        log.debug("Creating event by organizer id {}", event.getOrganizerId());
+
         if (userDoesNotExists(event.getOrganizerId()))
         {
             throw new UserIdWasNotFoundException(ErrorMessage.USER_ID_WAS_NOT_FOUND);
@@ -50,6 +52,8 @@ public class EventServiceImpl implements EventService
     @Override
     public EventDto findById(UUID id)
     {
+        log.debug("Looking for event with id {}", id);
+
         return mapper.toDto(
                 repository.findById(id)
                         .orElseThrow(() -> new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND))
@@ -59,6 +63,8 @@ public class EventServiceImpl implements EventService
     @Override
     public List<EventDto> findByUserId(UUID user)
     {
+        log.debug("Looking for events for user with id {}", user);
+
         return mapper.toDtoList(
                 repository.findAllByOrganizerId(user)
                         .orElse(null)
@@ -68,12 +74,16 @@ public class EventServiceImpl implements EventService
     @Override
     public void addCategory(UUID id, UUID category)
     {
+        log.debug("Adding category {} to event {}", category, id);
+
         categoryRepository.recordChanging(id, category);
     }
 
     @Override
     public void changeOrganizer(UUID id, UUID newOrganizer)
     {
+        log.debug("Changing organizer for event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
@@ -85,6 +95,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void changeTitle(UUID id, String newTitle)
     {
+        log.debug("Changing title for event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
@@ -107,6 +119,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void changeStartTime(UUID id, Timestamp newStart)
     {
+        log.debug("Changing start time for event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
@@ -118,6 +132,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void changeEndTime(UUID id, Timestamp newEnd)
     {
+        log.debug("Changing end time for event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
@@ -129,6 +145,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void changeLocation(UUID id, String newLocation)
     {
+        log.debug("Changing location for event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
@@ -140,6 +158,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void changeCapacity(UUID id, Integer newCapacity)
     {
+        log.debug("Changing capacity for event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
@@ -151,6 +171,8 @@ public class EventServiceImpl implements EventService
     @Override
     public void delete(UUID id)
     {
+        log.debug("Deleting event with id {}", id);
+
         if (eventDoesNotExists(id))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);

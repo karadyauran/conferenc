@@ -17,4 +17,6 @@ public interface BookingService
     void changeStatus(UUID id, Status newStatus);
 
     void delete(UUID id);
+
+    boolean bookingDoesNotExists(UUID id);
 }

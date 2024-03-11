@@ -23,4 +23,6 @@ public interface SessionService
     void changeLocation(UUID id, String newLocation);
 
     void delete(UUID id);
+
+    boolean sessionIsNotExists(UUID id);
 }

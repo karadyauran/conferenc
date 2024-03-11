@@ -28,4 +28,8 @@ public interface EventService
     void changeCapacity(UUID id, Integer newLocation);
 
     void delete(UUID id);
+
+    boolean eventDoesNotExists(UUID id);
+
+    boolean userDoesNotExists(UUID id);
 }

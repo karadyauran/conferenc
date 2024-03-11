@@ -13,4 +13,6 @@ public interface EventCategoryService
     void changeTitle(UUID id, String newTitle);
 
     void delete(UUID id);
+
+    boolean eventCategoryDoesNotExists(UUID id);
 }

@@ -14,4 +14,8 @@ public interface UserService
     void changeUsername(String username);
 
     void delete(UUID id);
+
+    boolean userDoesNotExists(UUID id);
+
+    boolean userDoesNotExists(String username);
 }

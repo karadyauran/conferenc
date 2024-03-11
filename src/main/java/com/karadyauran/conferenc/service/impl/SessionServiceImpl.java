@@ -41,13 +41,13 @@ public class SessionServiceImpl implements SessionService
                 .speaker(session.getSpeaker())
                 .build();
 
+        var res = repository.save(obj);
+
         userSessionRepository.recordChanging(
                 session.getUserId(),
-                session.getEventId(),
+                res.getId(),
                 session.getStatus()
         );
-
-        repository.save(obj);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.karadyauran.conferenc.service.interf;
 
+import com.karadyauran.conferenc.dto.create.BookingCreateDto;
 import com.karadyauran.conferenc.dto.normal.BookingDto;
 import com.karadyauran.conferenc.model.enums.Status;
 
@@ -8,7 +9,7 @@ import java.util.UUID;
 
 public interface BookingService
 {
-    void create(UUID userId, UUID eventId, Status status);
+    void create(BookingCreateDto booking);
 
     BookingDto findById(UUID id);
 

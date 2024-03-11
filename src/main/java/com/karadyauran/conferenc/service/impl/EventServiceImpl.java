@@ -40,6 +40,11 @@ public class EventServiceImpl implements EventService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void create(EventCreateDto event)
     {
+        if (event == null)
+        {
+            throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
+        }
+
         log.debug("Creating event by organizer id {}", event.getOrganizerId());
 
         if (userDoesNotExists(event.getOrganizerId()))

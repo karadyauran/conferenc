@@ -33,6 +33,11 @@ public class EventCategoryServiceImpl implements EventCategoryService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void create(EventCategoryCreateDto category)
     {
+        if (category == null)
+        {
+            throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
+        }
+
         log.debug("Creating category with name {}", category.getName());
 
         repository.save(

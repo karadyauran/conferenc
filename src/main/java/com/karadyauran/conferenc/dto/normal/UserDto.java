@@ -1,5 +1,6 @@
 package com.karadyauran.conferenc.dto.normal;
 
+import com.karadyauran.conferenc.dto.shorted.EventShortDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,5 +20,6 @@ public class UserDto
 {
     String username;
     String email;
+    List<EventShortDto> events;
     List<BookingDto> bookings;
 }

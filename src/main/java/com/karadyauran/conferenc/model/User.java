@@ -47,21 +47,36 @@ public class User implements UserDetails
     @Column(name = "email")
     String email;
 
-    @Column(name = "password_hash")
+    @Column(name = "password")
     String password;
 
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     Role role;
 
-    @OneToMany(mappedBy = "users")
+    @OneToMany(mappedBy = "user")
     List<Booking> bookings;
+
+    @OneToMany(mappedBy = "organizer")
+    List<Event> events;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(name = "user_sessions",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "session_id"))
     private List<Session> sessions;
+
+    public User(UUID id, String username, String email, String password, Role role, List<Booking> bookings, List<Event> events, List<Session> sessions)
+    {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.bookings = bookings;
+        this.events = events;
+        this.sessions = sessions;
+    }
 
     @Override
     public boolean equals(Object o)

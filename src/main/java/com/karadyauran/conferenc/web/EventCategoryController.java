@@ -73,6 +73,17 @@ public class EventCategoryController implements EventCategoryApi
         return ResponseEntity.ok().body(service.findById(id));
     }
 
+    @Operation(summary = "Change name",
+            description = "Changing name of session",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
     @Override
     public ResponseEntity<String> changeName(UUID id, String newName)
     {
@@ -80,6 +91,17 @@ public class EventCategoryController implements EventCategoryApi
         return ResponseEntity.ok("Success");
     }
 
+    @Operation(summary = "Change description",
+            description = "Changing description of session",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
     @Override
     public ResponseEntity<String> changeDescription(UUID id, String newDescription)
     {
@@ -87,6 +109,19 @@ public class EventCategoryController implements EventCategoryApi
         return ResponseEntity.ok("Success");
     }
 
+    @Operation(summary = "Delete category",
+            description = "Deletes category from database by given id",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "404",
+                            description = "Session was not found"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
     @Override
     public ResponseEntity<String> delete(UUID id)
     {

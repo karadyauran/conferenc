@@ -7,7 +7,7 @@ import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.EvenCreateMapper;
 import com.karadyauran.conferenc.mapper.EventMapper;
-import com.karadyauran.conferenc.model.EventCategory;
+import com.karadyauran.conferenc.repository.EventCategoryMappingRepository;
 import com.karadyauran.conferenc.repository.EventRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
 import com.karadyauran.conferenc.service.interf.EventService;
@@ -29,6 +29,7 @@ public class EventServiceImpl implements EventService
 {
     EventRepository repository;
     UserRepository userRepository;
+    EventCategoryMappingRepository categoryRepository;
 
     EventMapper mapper;
     EvenCreateMapper createMapper;
@@ -62,6 +63,12 @@ public class EventServiceImpl implements EventService
                 repository.findAllByOrganizerId(user)
                         .orElse(null)
         );
+    }
+
+    @Override
+    public void addCategory(UUID id, UUID category)
+    {
+        categoryRepository.recordChanging(id, category);
     }
 
     @Override

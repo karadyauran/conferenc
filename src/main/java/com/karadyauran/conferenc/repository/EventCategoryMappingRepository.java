@@ -1,7 +1,6 @@
 package com.karadyauran.conferenc.repository;
 
 import com.karadyauran.conferenc.model.EventCategoryMapping;
-import com.karadyauran.conferenc.model.UserSession;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

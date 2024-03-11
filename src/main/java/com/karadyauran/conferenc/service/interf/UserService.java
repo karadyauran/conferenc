@@ -9,13 +9,17 @@ public interface UserService
 {
     void create(UserCreateDto user);
 
+    UserShortDto findById(UUID id);
+
     UserShortDto findByUsername(String username);
 
-    void changeUsername(String username);
+    void changeUsername(UUID id, String username);
 
     void delete(UUID id);
 
-    boolean userDoesNotExists(UUID id);
+    boolean userDoesNotExistsById(UUID id);
 
-    boolean userDoesNotExists(String username);
+    boolean userDoesNotExistsByUsername(String username);
+
+    boolean userAlreadyExists(String username);
 }

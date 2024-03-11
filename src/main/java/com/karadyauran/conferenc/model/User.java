@@ -14,6 +14,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -29,6 +30,7 @@ import java.util.UUID;
 
 @Data
 @Entity
+@Builder
 @Table(name = "users")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)

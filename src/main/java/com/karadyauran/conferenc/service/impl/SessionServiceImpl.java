@@ -2,10 +2,11 @@ package com.karadyauran.conferenc.service.impl;
 
 import com.karadyauran.conferenc.dto.create.SessionCreateDto;
 import com.karadyauran.conferenc.dto.normal.SessionDto;
-import com.karadyauran.conferenc.error.SessionWasNotExistsException;
+import com.karadyauran.conferenc.error.SessionWasNotFoundException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.SessionCreateMapper;
 import com.karadyauran.conferenc.mapper.SessionMapper;
+import com.karadyauran.conferenc.model.Session;
 import com.karadyauran.conferenc.repository.SessionRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
 import com.karadyauran.conferenc.service.interf.SessionService;
@@ -28,14 +29,20 @@ public class SessionServiceImpl implements SessionService
     UserRepository userRepository;
 
     SessionMapper mapper;
-    SessionCreateMapper createMapper;
 
     @Override
     public void create(SessionCreateDto session)
     {
-        repository.save(
-                createMapper.toEntity(session)
-        );
+        var obj = Session.builder()
+                .eventId(session.getEventId())
+                .start(session.getStart())
+                .end(session.getEnd())
+                .speaker(session.getSpeaker())
+                .build();
+
+
+
+        repository.save(obj);
     }
 
     @Override
@@ -43,7 +50,7 @@ public class SessionServiceImpl implements SessionService
     {
         return mapper.toDto(
                 repository.findById(id)
-                        .orElseThrow(() -> new SessionWasNotExistsException(ErrorMessage.SESSION_WAS_NOT_FOUND))
+                        .orElseThrow(() -> new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND))
         );
     }
 
@@ -52,7 +59,7 @@ public class SessionServiceImpl implements SessionService
     {
         if (sessionIsNotExists(id))
         {
-            throw new SessionWasNotExistsException(ErrorMessage.SESSION_WAS_NOT_FOUND);
+            throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
         }
 
         repository.changeStart(id, newStart);
@@ -63,7 +70,7 @@ public class SessionServiceImpl implements SessionService
     {
         if (sessionIsNotExists(id))
         {
-            throw new SessionWasNotExistsException(ErrorMessage.SESSION_WAS_NOT_FOUND);
+            throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
         }
 
         repository.changeEnd(id, newEnd);
@@ -74,7 +81,7 @@ public class SessionServiceImpl implements SessionService
     {
         if (sessionIsNotExists(id))
         {
-            throw new SessionWasNotExistsException(ErrorMessage.SESSION_WAS_NOT_FOUND);
+            throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
         }
 
         repository.changeSpeaker(id, newSpeaker);
@@ -85,7 +92,7 @@ public class SessionServiceImpl implements SessionService
     {
         if (sessionIsNotExists(id))
         {
-            throw new SessionWasNotExistsException(ErrorMessage.SESSION_WAS_NOT_FOUND);
+            throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
         }
 
         repository.changeLocation(id, newLocation);
@@ -96,7 +103,7 @@ public class SessionServiceImpl implements SessionService
     {
         if (sessionIsNotExists(id))
         {
-            throw new SessionWasNotExistsException(ErrorMessage.SESSION_WAS_NOT_FOUND);
+            throw new SessionWasNotFoundException(ErrorMessage.SESSION_WAS_NOT_FOUND);
         }
 
         repository.deleteById(id);

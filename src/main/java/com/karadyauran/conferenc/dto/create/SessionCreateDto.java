@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,7 +18,8 @@ import java.sql.Timestamp;
 @ToString
 public class SessionCreateDto
 {
-    String userId;
+    UUID userId;
+    UUID eventId;
     Timestamp start;
     Timestamp end;
     String speaker;

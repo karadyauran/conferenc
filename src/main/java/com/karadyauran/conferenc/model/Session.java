@@ -3,10 +3,12 @@ package com.karadyauran.conferenc.model;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -19,6 +21,7 @@ import java.util.UUID;
 
 @Data
 @Entity
+@Builder
 @Table(name = "sessions")
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -29,7 +32,7 @@ public class Session
     @Column(name = "id")
     UUID id;
 
-    @Column(name = "event_id")
+    @Column(name = "event_id", insertable=false, updatable=false)
     UUID eventId;
 
     @Column(name = "start_time")
@@ -44,11 +47,24 @@ public class Session
     @Column(name = "location")
     String location;
 
-    @OneToOne(mappedBy = "session")
+    @OneToOne
+    @JoinColumn(name = "event_id", referencedColumnName = "id")
     Event event;
 
     @ManyToMany(mappedBy = "sessions")
     private List<User> users;
+
+    public Session(UUID id, UUID eventId, Timestamp start, Timestamp end, String speaker, String location, Event event, List<User> users)
+    {
+        this.id = id;
+        this.eventId = eventId;
+        this.start = start;
+        this.end = end;
+        this.speaker = speaker;
+        this.location = location;
+        this.event = event;
+        this.users = users;
+    }
 
     @Override
     public boolean equals(Object o)

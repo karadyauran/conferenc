@@ -5,6 +5,7 @@ import com.karadyauran.conferenc.dto.normal.UserDto;
 import com.karadyauran.conferenc.error.EmailIsAlreadyTakenException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UsernameIsAlreadyExistsException;
+import com.karadyauran.conferenc.error.UsernameWasNotFoundException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.UserMapper;
 import com.karadyauran.conferenc.model.User;
@@ -87,7 +88,7 @@ public class UserServiceImpl implements UserService
 
         return mapper.toDto(
                 repository.findUserByUsername(username)
-                        .orElseThrow(() -> new UserIdWasNotFoundException(ErrorMessage.USERNAME_WAS_NOT_FOUND))
+                        .orElseThrow(() -> new UsernameWasNotFoundException(ErrorMessage.USERNAME_WAS_NOT_FOUND))
         );
     }
 

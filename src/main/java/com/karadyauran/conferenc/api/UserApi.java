@@ -21,7 +21,7 @@ public interface UserApi
     @PostMapping("/append/")
     ResponseEntity<String> create(@RequestBody UserCreateDto user);
 
-    @GetMapping("/}")
+    @GetMapping("/")
     ResponseEntity<UserDto> findById(@RequestParam UUID id);
 
     @GetMapping("/{username}")

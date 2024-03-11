@@ -14,11 +14,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+
 @RestControllerAdvice
 public class ExceptionHandlerAspect
 {
     @ExceptionHandler(UsernameWasNotFoundException.class)
-    public ResponseEntity<String> handleUserWasNotFoundException(UsernameWasNotFoundException ex)
+    public ResponseEntity<?> handleUserWasNotFoundException(UsernameWasNotFoundException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -29,7 +30,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(UsernameIsAlreadyExistsException.class)
-    public ResponseEntity<String> handleUsernameIsAlreadyExists(UsernameIsAlreadyExistsException ex)
+    public ResponseEntity<?> handleUsernameIsAlreadyExists(UsernameIsAlreadyExistsException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -51,7 +52,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(EmailIsAlreadyTakenException.class)
-    public ResponseEntity<String> handleEmailIsAlreadyTaken(EmailIsAlreadyTakenException ex)
+    public ResponseEntity<?> handleEmailIsAlreadyTaken(EmailIsAlreadyTakenException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -62,7 +63,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(BookingWasNotFoundException.class)
-    public ResponseEntity<String> handleBookingWasNotFound(BookingWasNotFoundException ex)
+    public ResponseEntity<?> handleBookingWasNotFound(BookingWasNotFoundException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -73,7 +74,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(EventCategoryWasNotFoundException.class)
-    public ResponseEntity<String> handleEventCategoryWasNotFound(EventCategoryWasNotFoundException ex)
+    public ResponseEntity<?> handleEventCategoryWasNotFound(EventCategoryWasNotFoundException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -84,7 +85,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(EventWasNotFoundException.class)
-    public ResponseEntity<String> handleEventWasNotFound(EventWasNotFoundException ex)
+    public ResponseEntity<?> handleEventWasNotFound(EventWasNotFoundException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -95,7 +96,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(SessionWasNotFoundException.class)
-    public ResponseEntity<String> handleSessionWasNotFound(SessionWasNotFoundException ex)
+    public ResponseEntity<?> handleSessionWasNotFound(SessionWasNotFoundException ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -106,7 +107,7 @@ public class ExceptionHandlerAspect
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAllExceptions(Exception ex)
+    public ResponseEntity<?> handleAllExceptions(Exception ex)
     {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

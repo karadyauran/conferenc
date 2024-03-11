@@ -24,16 +24,7 @@ public class SecurityConfig
     private final AuthenticationProvider authenticationProvider;
 
     private static final String[] WHITE_LIST_URL = {
-            "/images/**",
-            "/api/enum/**",
-            "/api/",
-            "/api/create",
-            "/api/product/**",
-            "/api/login",
-            "/api/register",
-            "/api/user/add",
-            "/api/registration",
-            "/api/authentication/login",
+            "/api/user/append/",
             "/api/v1/auth/authenticate",
 
             "/v2/api-docs",
@@ -45,7 +36,8 @@ public class SecurityConfig
             "/configuration/security",
             "/swagger-ui/**",
             "/webjars/**",
-            "/swagger-ui.html"
+            "/swagger-ui.html",
+            "/conferenc/v1/swagger-ui.html"
     };
 
     @Bean

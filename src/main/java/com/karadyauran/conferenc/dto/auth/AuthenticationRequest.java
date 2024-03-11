@@ -14,7 +14,6 @@ import lombok.Setter;
 public class AuthenticationRequest
 {
     private String username;
-
     private String password;
 
     @Override

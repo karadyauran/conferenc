@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
-@RequestMapping("/api/user/")
+@RequestMapping("/api/user")
 public interface UserApi
 {
     @PostMapping("/append/")

@@ -17,7 +17,7 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping("/api/event/")
+@RequestMapping("/api/event-category/")
 public interface EventApi
 {
     @PostMapping("/append/")

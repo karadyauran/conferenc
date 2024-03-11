@@ -17,11 +17,10 @@ spring:
     create-schemas: true
     schemas: conferenc
 
-    h2:
-      console:
-        enabled: true
-        settings:
-          web-allow-others: true
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 
 
 springdoc:

@@ -44,6 +44,8 @@ public class EventCategoryServiceImpl implements EventCategoryService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public EventCategoryShortDto findById(UUID id)
     {
+        log.debug("Looking for event category with id {}", id);
+
         return shortMapper.toDto(
                 repository.findById(id)
                         .orElseThrow(() -> new EventCategoryWasNotFoundException(ErrorMessage.EVENT_CATEGORY_WAS_NOT_FOUND))
@@ -54,6 +56,8 @@ public class EventCategoryServiceImpl implements EventCategoryService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeName(UUID id, String newName)
     {
+        log.debug("Changing name for event category with id {}", id);
+
         if (eventCategoryDoesNotExists(id))
         {
             throw new EventCategoryWasNotFoundException(ErrorMessage.EVENT_CATEGORY_WAS_NOT_FOUND);
@@ -66,6 +70,8 @@ public class EventCategoryServiceImpl implements EventCategoryService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void changeDescription(UUID id, String newDescription)
     {
+        log.debug("Changing description for event category with id {}", id);
+
         if (eventCategoryDoesNotExists(id))
         {
             throw new EventCategoryWasNotFoundException(ErrorMessage.EVENT_CATEGORY_WAS_NOT_FOUND);
@@ -78,6 +84,8 @@ public class EventCategoryServiceImpl implements EventCategoryService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void delete(UUID id)
     {
+        log.debug("Deleting event category with id {}", id);
+
         if (eventCategoryDoesNotExists(id))
         {
             throw new EventCategoryWasNotFoundException(ErrorMessage.EVENT_CATEGORY_WAS_NOT_FOUND);

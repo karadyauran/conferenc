@@ -1,10 +1,8 @@
 package com.karadyauran.conferenc.web;
 
 import com.karadyauran.conferenc.api.EventApi;
-import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
-import com.karadyauran.conferenc.model.enums.Status;
 import com.karadyauran.conferenc.service.interf.EventService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

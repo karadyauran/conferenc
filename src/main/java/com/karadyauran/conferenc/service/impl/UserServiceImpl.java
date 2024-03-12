@@ -166,16 +166,6 @@ public class UserServiceImpl implements UserService
         User currentUser = (User) authentication.getPrincipal();
         UUID userId = currentUser.getId();
 
-        System.out.println("######################################");
-
-        System.out.println();
-
-        System.out.println(userId);
-
-        System.out.println();
-
-        System.out.println("######################################");
-
         return userId.equals(profileId);
     }
 }

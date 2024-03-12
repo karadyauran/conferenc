@@ -15,9 +15,9 @@ VALUES ('7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1', '550e8400-e29b-41d4-a716-4466554
 -- Inserting test data into the bookings table
 INSERT INTO bookings (id, user_id, event_id, status, number_of_attendees)
 VALUES ('3fde6a02-6824-447f-a621-5f103bf33b76', 'fa163f16-71f8-4d52-a8c3-215df450a285',
-        '7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1', 'confirmed', 2),
+        '7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1', 'CONFIRMED', 2),
        ('ce25d345-1c81-4e9b-8114-8a7548c8a5b3', 'fa163f16-71f8-4d52-a8c3-215df450a285',
-        'f1a60e4f-ae7e-447d-a08a-2d97a356b4e7', 'pending', 1);
+        'f1a60e4f-ae7e-447d-a08a-2d97a356b4e7', 'PENDING', 1);
 
 -- Inserting test data into the sessions table
 INSERT INTO sessions (id, event_id, title, start_time, end_time, speaker, location)

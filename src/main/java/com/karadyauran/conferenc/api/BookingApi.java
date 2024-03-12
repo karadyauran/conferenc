@@ -17,18 +17,18 @@ import java.util.UUID;
 
 public interface BookingApi
 {
-    @PostMapping("/api/booking//create")
+    @PostMapping("/api/booking/create")
     ResponseEntity<String> create(@RequestBody BookingCreateDto booking);
 
-    @GetMapping("/api/booking//find/id")
+    @GetMapping("/api/booking/find/id")
     ResponseEntity<BookingDto> findById(@Uuid @RequestParam UUID id);
 
-    @GetMapping("/api/booking//find/user")
+    @GetMapping("/api/booking/find/user")
     ResponseEntity<List<BookingDto>> findByUserId(@Uuid @RequestParam UUID user);
 
-    @PutMapping("/api/booking//change/status")
+    @PutMapping("/api/booking/change/status")
     ResponseEntity<String> changeStatus(@Uuid @RequestParam UUID id, @RequestParam Status newStatus);
 
-    @DeleteMapping("/api/booking//delete")
+    @DeleteMapping("/api/booking/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

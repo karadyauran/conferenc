@@ -2,7 +2,6 @@ package com.karadyauran.conferenc.web;
 
 import com.karadyauran.conferenc.api.BookingApi;
 import com.karadyauran.conferenc.dto.create.BookingCreateDto;
-import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.BookingDto;
 import com.karadyauran.conferenc.model.enums.Status;
 import com.karadyauran.conferenc.service.interf.BookingService;
@@ -17,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,6 +25,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/booking/")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "BOOKING", description = "Operations related to booking in the system")
 public class BookingController implements BookingApi

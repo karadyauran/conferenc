@@ -62,7 +62,7 @@ public class UserServiceImpl implements UserService
                 .password(
                         passwordEncoder.encode(user.getPassword())
                 )
-                .role(Role.ATTENDEE)
+                .role(Role.valueOf(user.getRole()))
                 .build();
 
         repository.save(obj);

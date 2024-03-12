@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
 
 
 @Configuration
@@ -26,7 +27,6 @@ public class SecurityConfig
 
     private static final String[] WHITE_LIST_URL = {
             "/api/user/register",
-            "/api/user/**",
 
             "/v2/api-docs",
             "/v3/api-docs",
@@ -48,7 +48,7 @@ public class SecurityConfig
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers(WHITE_LIST_URL)
+                                .requestMatchers("/api/user/register")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())

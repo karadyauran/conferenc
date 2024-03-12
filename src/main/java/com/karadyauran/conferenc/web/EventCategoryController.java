@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -22,6 +23,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/event-category")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "EVENT CATEGORY", description = "Operations related to event category in the system")
 public class EventCategoryController implements EventCategoryApi

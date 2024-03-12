@@ -16,6 +16,7 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
@@ -25,6 +26,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/session")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "SESSION", description = "Operations related to session in the system")
 public class SessionController implements SessionApi

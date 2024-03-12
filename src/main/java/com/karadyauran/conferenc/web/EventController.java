@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
@@ -24,6 +25,7 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/event")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "EVENT", description = "Operations related to event in the system")
 public class EventController implements EventApi

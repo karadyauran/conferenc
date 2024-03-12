@@ -4,6 +4,8 @@ import com.karadyauran.conferenc.model.enums.Status;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -37,6 +39,7 @@ public class Booking
     UUID eventId;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     Status status;
 
     @Column(name = "number_of_attendees")

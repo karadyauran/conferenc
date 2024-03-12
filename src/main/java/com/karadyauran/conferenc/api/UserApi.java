@@ -25,9 +25,9 @@ public interface UserApi
     @GetMapping("/{username}")
     ResponseEntity<UserDto> findByUsername(@PathVariable String username);
 
-    @PutMapping("/change/username/")
+    @PutMapping("/api/user/change/username/")
     ResponseEntity<String> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/api/user/delete")
     ResponseEntity<String> deleteById(@Uuid @RequestParam UUID id);
 }

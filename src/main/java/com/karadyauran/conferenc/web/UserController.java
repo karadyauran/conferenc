@@ -3,7 +3,6 @@ package com.karadyauran.conferenc.web;
 import com.karadyauran.conferenc.api.UserApi;
 import com.karadyauran.conferenc.dto.create.UserCreateDto;
 import com.karadyauran.conferenc.dto.normal.UserDto;
-import com.karadyauran.conferenc.page.UserPage;
 import com.karadyauran.conferenc.service.interf.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -17,7 +16,6 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
@@ -26,10 +24,9 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/user")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "USERS", description = "Operations related to users in the system")
-public class UserController implements UserApi, UserPage
+public class UserController implements UserApi
 {
     UserService service;
 

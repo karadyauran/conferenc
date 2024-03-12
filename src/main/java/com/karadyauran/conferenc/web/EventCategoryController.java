@@ -23,7 +23,6 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/event-category")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "EVENT CATEGORY", description = "Operations related to event category in the system")
 public class EventCategoryController implements EventCategoryApi

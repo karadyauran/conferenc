@@ -25,7 +25,6 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/booking/")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "BOOKING", description = "Operations related to booking in the system")
 public class BookingController implements BookingApi

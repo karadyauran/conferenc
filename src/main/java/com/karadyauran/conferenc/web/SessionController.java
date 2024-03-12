@@ -26,7 +26,6 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/session")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "SESSION", description = "Operations related to session in the system")
 public class SessionController implements SessionApi

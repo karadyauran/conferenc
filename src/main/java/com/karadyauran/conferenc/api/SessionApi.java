@@ -16,24 +16,24 @@ import java.util.UUID;
 
 public interface SessionApi
 {
-    @PostMapping("/create")
+    @PostMapping("/api/session/create")
     ResponseEntity<String> create(@RequestBody SessionCreateDto session);
 
-    @GetMapping("/find/id")
+    @GetMapping("/api/session/find/id")
     ResponseEntity<SessionDto> findById(@Uuid @RequestParam UUID id);
 
-    @PutMapping("/change/time/start")
+    @PutMapping("/api/session/change/time/start")
     ResponseEntity<String> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 
-    @PutMapping("/change/time/end")
+    @PutMapping("/api/session/change/time/end")
     ResponseEntity<String> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
 
-    @PutMapping("/change/speaker")
+    @PutMapping("/api/session/change/speaker")
     ResponseEntity<String> changeSpeaker(@Uuid @RequestParam UUID id, @RequestParam String newSpeaker);
 
-    @PutMapping("/change/location")
+    @PutMapping("/api/session/change/location")
     ResponseEntity<String> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/api/session/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

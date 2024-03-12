@@ -15,18 +15,18 @@ import java.util.UUID;
 
 public interface EventCategoryApi
 {
-    @PostMapping("/create")
+    @PostMapping("/api/event-category/create")
     ResponseEntity<String> create(@RequestBody EventCategoryCreateDto category);
 
-    @GetMapping("/find/id")
+    @GetMapping("/api/event-category/find/id")
     ResponseEntity<EventCategoryShortDto> findById(@Uuid @RequestParam UUID id);
 
-    @PutMapping("/change/name")
+    @PutMapping("/api/event-category/change/name")
     ResponseEntity<String> changeName(@Uuid @RequestParam UUID id, @RequestParam String newName);
 
-    @PutMapping("/change/description")
+    @PutMapping("/api/event-category/change/description")
     ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam String newDescription);
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/api/event-category/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

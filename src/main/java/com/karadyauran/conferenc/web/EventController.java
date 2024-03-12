@@ -25,7 +25,6 @@ import java.util.UUID;
 @Validated
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/event")
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 @Tag(name = "EVENT", description = "Operations related to event in the system")
 public class EventController implements EventApi

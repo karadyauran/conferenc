@@ -15,35 +15,36 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
+// eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDIzNzk3OCwiZXhwIjoxNzEwMjM5NDE4fQ.7C5eHccPaLQ-WgiTeAUNlm5EJCQrH0EF_zVossVfRXw
 public interface EventApi
 {
-    @PostMapping("/create")
+    @PostMapping("/api/event/create")
     ResponseEntity<String> create(@RequestBody EventCreateDto event);
 
-    @GetMapping("/find/id")
+    @GetMapping("/api/event/find/id")
     ResponseEntity<EventDto> findById(@Uuid @RequestParam UUID id);
 
-    @GetMapping("/find/user")
+    @GetMapping("/api/event/find/user")
     ResponseEntity<List<EventDto>> findByUserId(@Uuid @RequestParam UUID user);
 
-    @PutMapping("/change/title")
+    @PutMapping("/api/event/change/title")
     ResponseEntity<String> changeTitle(@Uuid @RequestParam UUID id, @RequestParam String newTitle);
 
-    @PutMapping("/change/description")
+    @PutMapping("/api/event/change/description")
     ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam String newDescription);
 
-    @PutMapping("/change/time/start")
+    @PutMapping("/api/event/change/time/start")
     ResponseEntity<String> changeStartTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newStart);
 
-    @PutMapping("/change/time/end")
+    @PutMapping("/api/event/change/time/end")
     ResponseEntity<String> changeEndTime(@Uuid @RequestParam UUID id, @RequestParam Timestamp newEnd);
 
-    @PutMapping("/change/location")
+    @PutMapping("/api/event/change/location")
     ResponseEntity<String> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
-    @PutMapping("/change/capacity")
+    @PutMapping("/api/event/change/capacity")
     ResponseEntity<String> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newCapacity);
 
-    @DeleteMapping("/delete")
+    @DeleteMapping("/api/event/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

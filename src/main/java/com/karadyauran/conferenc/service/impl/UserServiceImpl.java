@@ -16,6 +16,8 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -158,5 +160,22 @@ public class UserServiceImpl implements UserService
     public boolean emailIsAlreadyTaken(String email)
     {
         return repository.existsByEmail(email);
+    }
+
+    public boolean isProfileOwner(Authentication authentication, UUID profileId) {
+        User currentUser = (User) authentication.getPrincipal();
+        UUID userId = currentUser.getId();
+
+        System.out.println("######################################");
+
+        System.out.println();
+
+        System.out.println(userId);
+
+        System.out.println();
+
+        System.out.println("######################################");
+
+        return userId.equals(profileId);
     }
 }

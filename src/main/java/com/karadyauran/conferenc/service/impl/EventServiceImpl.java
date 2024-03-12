@@ -6,7 +6,7 @@ import com.karadyauran.conferenc.error.EventWasNotFoundException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
-import com.karadyauran.conferenc.mapper.EvenCreateMapper;
+import com.karadyauran.conferenc.mapper.EventCreateMapper;
 import com.karadyauran.conferenc.mapper.EventMapper;
 import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.repository.EventCategoryMappingRepository;
@@ -36,7 +36,7 @@ public class EventServiceImpl implements EventService
     EventCategoryMappingRepository categoryRepository;
 
     EventMapper mapper;
-    EvenCreateMapper createMapper;
+    EventCreateMapper createMapper;
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)

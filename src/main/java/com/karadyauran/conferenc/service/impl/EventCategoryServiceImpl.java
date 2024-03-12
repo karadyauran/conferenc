@@ -1,10 +1,11 @@
 package com.karadyauran.conferenc.service.impl;
 
 import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
-import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
+import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
 import com.karadyauran.conferenc.error.EventCategoryWasNotFoundException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.EventCategoryCreateMapper;
+import com.karadyauran.conferenc.mapper.EventCategoryMapper;
 import com.karadyauran.conferenc.mapper.EventCategoryShortMapper;
 import com.karadyauran.conferenc.repository.EventCategoryRepository;
 import com.karadyauran.conferenc.service.interf.EventCategoryService;
@@ -26,7 +27,8 @@ public class EventCategoryServiceImpl implements EventCategoryService
 {
     EventCategoryRepository repository;
 
-    EventCategoryCreateMapper mapper;
+    EventCategoryMapper mapper;
+    EventCategoryCreateMapper createMapper;
     EventCategoryShortMapper shortMapper;
 
     @Override
@@ -41,17 +43,17 @@ public class EventCategoryServiceImpl implements EventCategoryService
         log.debug("Creating category with name {}", category.getName());
 
         repository.save(
-                mapper.toEntity(category)
+                createMapper.toEntity(category)
         );
     }
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public EventCategoryShortDto findById(UUID id)
+    public EventCategoryDto findById(UUID id)
     {
         log.debug("Looking for event category with id {}", id);
 
-        return shortMapper.toDto(
+        return mapper.toDto(
                 repository.findById(id)
                         .orElseThrow(() -> new EventCategoryWasNotFoundException(ErrorMessage.EVENT_CATEGORY_WAS_NOT_FOUND))
         );

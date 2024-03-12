@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface EvenShortMapper
+public interface EventShortMapper
 {
     EventShortDto toDto(Event event);
 

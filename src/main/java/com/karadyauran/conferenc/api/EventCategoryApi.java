@@ -1,6 +1,7 @@
 package com.karadyauran.conferenc.api;
 
 import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
+import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
 import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
 import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public interface EventCategoryApi
     ResponseEntity<String> create(@RequestBody EventCategoryCreateDto category);
 
     @GetMapping("/api/event-category/find/id")
-    ResponseEntity<EventCategoryShortDto> findById(@Uuid @RequestParam UUID id);
+    ResponseEntity<EventCategoryDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/api/event-category/change/name")
     @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")

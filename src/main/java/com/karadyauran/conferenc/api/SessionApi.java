@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.Timestamp;
 import java.util.UUID;
 
-@RequestMapping("/api/session/")
+@RequestMapping("/api/session")
 public interface SessionApi
 {
-    @PostMapping("/append/")
+    @PostMapping("/create")
     ResponseEntity<String> create(@RequestBody SessionCreateDto session);
 
-    @GetMapping("/find/id/")
+    @GetMapping("/find/id")
     ResponseEntity<SessionDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/change/time/start")
@@ -36,6 +36,6 @@ public interface SessionApi
     @PutMapping("/change/location")
     ResponseEntity<String> changeLocation(@Uuid @RequestParam UUID id, @RequestParam String newLocation);
 
-    @DeleteMapping("/delete/")
+    @DeleteMapping("/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

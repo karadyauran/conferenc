@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.UUID;
 
-@RequestMapping("/api/event/")
+@RequestMapping("/api/event")
 public interface EventCategoryApi
 {
-    @PostMapping("/append/")
+    @PostMapping("/create")
     ResponseEntity<String> create(@RequestBody EventCategoryCreateDto category);
 
-    @GetMapping("/find/id/")
+    @GetMapping("/find/id")
     ResponseEntity<EventCategoryShortDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/change/name")
@@ -29,6 +29,6 @@ public interface EventCategoryApi
     @PutMapping("/change/description")
     ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam String newDescription);
 
-    @DeleteMapping("/delete/")
+    @DeleteMapping("/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

@@ -30,6 +30,6 @@ public interface UserApi
     @PutMapping("/change/username/")
     ResponseEntity<String> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
 
-    @DeleteMapping("/delete/")
+    @DeleteMapping("/delete")
     ResponseEntity<String> deleteById(@Uuid @RequestParam UUID id);
 }

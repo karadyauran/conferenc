@@ -19,18 +19,18 @@ import java.util.UUID;
 @RequestMapping("/api/booking/")
 public interface BookingApi
 {
-    @PostMapping("/append/")
+    @PostMapping("/create")
     ResponseEntity<String> create(@RequestBody BookingCreateDto booking);
 
-    @GetMapping("/find/id/")
+    @GetMapping("/find/id")
     ResponseEntity<BookingDto> findById(@Uuid @RequestParam UUID id);
 
-    @GetMapping("/find/user/")
+    @GetMapping("/find/user")
     ResponseEntity<List<BookingDto>> findByUserId(@Uuid @RequestParam UUID user);
 
     @PutMapping("/change/status")
     ResponseEntity<String> changeStatus(@Uuid @RequestParam UUID id, @RequestParam Status newStatus);
 
-    @DeleteMapping("/delete/")
+    @DeleteMapping("/delete")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

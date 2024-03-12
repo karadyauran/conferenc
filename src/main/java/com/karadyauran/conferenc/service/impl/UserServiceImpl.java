@@ -107,6 +107,8 @@ public class UserServiceImpl implements UserService
         {
             throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
+
+        repository.changeUsername(id, username);
     }
 
     @Override
@@ -117,7 +119,7 @@ public class UserServiceImpl implements UserService
             throw new EmailIsAlreadyTakenException(ErrorMessage.EMAIL_IS_ALREADY_TAKEN);
         }
 
-
+        repository.changeEmail(id, email);
     }
 
     @Override

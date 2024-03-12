@@ -18,7 +18,6 @@ import java.util.List;
 @ToString
 public class UserDto
 {
-    String id;
     String username;
     String email;
     List<EventShortDto> events;

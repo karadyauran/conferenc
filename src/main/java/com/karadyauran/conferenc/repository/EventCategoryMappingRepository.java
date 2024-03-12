@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface EventCategoryMappingRepository extends JpaRepository<EventCategoryMapping, EventCategoryMapping.EventMappingId>
 {
     @Modifying
-    @Query(value = "INSERT INTO EventCategoryMapping (event_id, category_id) VALUES (:eventId, :categoryId)", nativeQuery = true)
+    @Query(value = "INSERT INTO event_category_mapping (event_id, category_id) VALUES (:eventId, :categoryId)", nativeQuery = true)
     void recordChanging(UUID eventId, UUID categoryId);
 }
 

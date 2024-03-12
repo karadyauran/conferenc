@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface UserSessionRepository extends JpaRepository<UserSession, UserSession.UserSessionId>
 {
     @Modifying
-    @Query(value = "INSERT INTO UserSession (user_id, session_id, status) VALUES (:userId, :sessionId, :status)", nativeQuery = true)
+    @Query(value = "INSERT INTO user_sessions (user_id, session_id, status) VALUES (:userId, :sessionId, :status)", nativeQuery = true)
     void recordChanging(UUID userId, UUID sessionId, String status);
 }
 

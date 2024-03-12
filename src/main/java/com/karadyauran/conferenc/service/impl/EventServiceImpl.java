@@ -58,6 +58,14 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    public List<EventDto> findAll()
+    {
+        return mapper.toDtoList(
+                repository.findAll()
+        );
+    }
+
+    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public EventDto findById(UUID id)
     {

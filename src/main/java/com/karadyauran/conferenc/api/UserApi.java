@@ -16,13 +16,13 @@ import java.util.UUID;
 
 public interface UserApi
 {
-    @PostMapping("/register")
+    @PostMapping("/api/user/register")
     ResponseEntity<String> create(@RequestBody UserCreateDto user);
 
-    @GetMapping("/")
+    @GetMapping("/api/user/byid")
     ResponseEntity<UserDto> findById(@RequestParam UUID id);
 
-    @GetMapping("/{username}")
+    @GetMapping("/api/user/username/{username}")
     ResponseEntity<UserDto> findByUsername(@PathVariable String username);
 
     @PutMapping("/api/user/change/username/")

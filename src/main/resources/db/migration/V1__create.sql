@@ -20,7 +20,7 @@ CREATE TABLE events
     location     VARCHAR(255),
     capacity     INTEGER,
     is_public    BOOLEAN DEFAULT true,
-    FOREIGN KEY (organizer_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (organizer_id) REFERENCES users (id)
 );
 
 -- creating bookings table
@@ -31,8 +31,8 @@ CREATE TABLE bookings
     event_id            UUID NOT NULL,
     status              VARCHAR(50),
     number_of_attendees INTEGER DEFAULT 1,
-    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (event_id) REFERENCES events (id)
 );
 
 -- creating sessions table
@@ -45,7 +45,7 @@ CREATE TABLE sessions
     end_time   TIMESTAMP    NOT NULL,
     speaker    VARCHAR(255),
     location   VARCHAR(255),
-    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (event_id) REFERENCES events (id)
 );
 
 -- creating user_sessions table

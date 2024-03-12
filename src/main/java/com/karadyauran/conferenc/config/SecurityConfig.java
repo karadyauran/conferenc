@@ -26,6 +26,9 @@ public class SecurityConfig
 
     private static final String[] WHITE_LIST_URL = {
             "/api/user/register",
+            "/api/user/username/**",
+            "/api/v1/auth/authenticate",
+            "/api/event/all",
 
             "/v2/api-docs",
             "/v3/api-docs",
@@ -47,7 +50,7 @@ public class SecurityConfig
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers("/api/v1/auth/authenticate")
+                                .requestMatchers(WHITE_LIST_URL)
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated())

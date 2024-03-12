@@ -21,6 +21,9 @@ public interface EventApi
     @PostMapping("/api/event/create")
     ResponseEntity<String> create(@RequestBody EventCreateDto event);
 
+    @GetMapping("/api/event/all")
+    ResponseEntity<List<EventDto>> findAll();
+
     @GetMapping("/api/event/find/id")
     ResponseEntity<EventDto> findById(@Uuid @RequestParam UUID id);
 

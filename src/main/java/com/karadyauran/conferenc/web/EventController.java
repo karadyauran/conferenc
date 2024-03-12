@@ -56,6 +56,12 @@ public class EventController implements EventApi
         return ResponseEntity.ok("Success");
     }
 
+    @Override
+    public ResponseEntity<List<EventDto>> findAll()
+    {
+        return ResponseEntity.ok().body(service.findAll());
+    }
+
     @Operation(summary = "Finds category by event id",
             description = "Finds the event, converts it to EventDto and returns",
             responses = {

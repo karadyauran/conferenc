@@ -11,6 +11,8 @@ public interface EventService
 {
     void create(EventCreateDto event);
 
+    List<EventDto> findAll();
+
     EventDto findById(UUID id);
 
     List<EventDto> findByUserId(UUID user);

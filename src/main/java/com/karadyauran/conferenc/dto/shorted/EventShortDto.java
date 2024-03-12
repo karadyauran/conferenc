@@ -17,6 +17,7 @@ import java.sql.Timestamp;
 @ToString
 public class EventShortDto
 {
+    String id;
     String title;
     String description;
     Timestamp start;

@@ -20,6 +20,7 @@ import java.util.List;
 @ToString
 public class EventDto
 {
+    String id;
     UserShortDto organizer;
     String title;
     String description;

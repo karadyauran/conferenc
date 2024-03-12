@@ -62,7 +62,7 @@ public class Event
     @OneToMany(mappedBy = "event")
     List<Booking> bookings;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organizer_id", insertable = false, updatable = false)
     User organizer;
 

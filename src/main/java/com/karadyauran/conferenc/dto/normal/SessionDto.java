@@ -18,6 +18,7 @@ import java.sql.Timestamp;
 @ToString
 public class SessionDto
 {
+    String id;
     EventShortDto event;
     Timestamp start;
     Timestamp end;

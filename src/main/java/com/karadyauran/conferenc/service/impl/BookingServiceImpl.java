@@ -4,9 +4,12 @@ import com.karadyauran.conferenc.dto.create.BookingCreateDto;
 import com.karadyauran.conferenc.dto.normal.BookingDto;
 import com.karadyauran.conferenc.error.BookingWasNotFoundException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
+import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.BookingCreateMapper;
 import com.karadyauran.conferenc.mapper.BookingMapper;
+import com.karadyauran.conferenc.model.Booking;
+import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.model.enums.Status;
 import com.karadyauran.conferenc.repository.BookingRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
@@ -44,9 +47,14 @@ public class BookingServiceImpl implements BookingService
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
         }
 
+        if (userRepository.getUserById(booking.getUserId()) == Role.ORGANIZER)
+        {
+            throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
+        }
+
         log.debug("Creating booking by user {}", booking.getUserId());
 
-        if (userDoesNotExists(UUID.fromString(booking.getUserId())))
+        if (userDoesNotExists(booking.getUserId()))
         {
             throw new UserIdWasNotFoundException(ErrorMessage.USER_ID_WAS_NOT_FOUND);
         }
@@ -116,7 +124,7 @@ public class BookingServiceImpl implements BookingService
     @Override
     public boolean bookingDoesNotExists(UUID id)
     {
-        return repository.existsById(id);
+        return !repository.existsById(id);
     }
 
     @Override

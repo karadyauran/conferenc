@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Builder
@@ -15,7 +17,6 @@ import lombok.ToString;
 @ToString
 public class BookingCreateDto
 {
-    String userId;
-    String eventId;
-    String status;
+    UUID userId;
+    UUID eventId;
 }

@@ -1,7 +1,6 @@
 package com.karadyauran.conferenc.model;
 
 import com.karadyauran.conferenc.model.enums.Status;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -32,10 +31,10 @@ public class Booking
     @Column(name = "id")
     UUID id;
 
-    @Column(name = "user_id", insertable = false, updatable = false)
+    @Column(name = "user_id")
     UUID userId;
 
-    @Column(name = "event_id", insertable = false, updatable = false)
+    @Column(name = "event_id")
     UUID eventId;
 
     @Column(name = "status")
@@ -45,13 +44,13 @@ public class Booking
     @Column(name = "number_of_attendees")
     int numberOfAttendees;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    User user;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "event_id", referencedColumnName = "id")
-    Event event;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "event_id", insertable = false, updatable = false)
+    private Event event;
 
     @Override
     public boolean equals(Object o)
@@ -59,18 +58,18 @@ public class Booking
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return Objects.equals(id, booking.id) && Objects.equals(userId, booking.userId) && Objects.equals(eventId, booking.eventId);
+        return Objects.equals(id, booking.id);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(id, userId, eventId);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString()
     {
-        return id + " - " + status;
+        return userId + " " + eventId;
     }
 }

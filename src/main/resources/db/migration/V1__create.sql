@@ -29,8 +29,8 @@ CREATE TABLE bookings
     id                  UUID PRIMARY KEY,
     user_id             UUID NOT NULL,
     event_id            UUID NOT NULL,
-    status              VARCHAR(50),
-    number_of_attendees INTEGER DEFAULT 1,
+    status              VARCHAR(50) DEFAULT 'PENDING',
+    number_of_attendees INTEGER     DEFAULT 1,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE
 );

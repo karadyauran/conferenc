@@ -21,5 +21,5 @@ public class ErrorMessage
     public static final String EVENT_CATEGORY_WAS_NOT_FOUND = "[EVENT CATEGORY] Event category was not found!";
 
     // BOOKING
-    public static final String BOOKING_WAS_NOT_FOUND = "[BOOKING] Booking category was not found!";
+    public static final String BOOKING_WAS_NOT_FOUND = "[BOOKING] Booking was not found!";
 }

@@ -4,9 +4,11 @@ import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.error.EventWasNotFoundException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
+import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.EvenCreateMapper;
 import com.karadyauran.conferenc.mapper.EventMapper;
+import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.repository.EventCategoryMappingRepository;
 import com.karadyauran.conferenc.repository.EventRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
@@ -43,6 +45,11 @@ public class EventServiceImpl implements EventService
         if (event == null)
         {
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
+        }
+
+        if (userRepository.getUserById(event.getOrganizerId()) == Role.ATTENDEE)
+        {
+            throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
         }
 
         log.debug("Creating event by organizer id {}", event.getOrganizerId());

@@ -1,6 +1,7 @@
 package com.karadyauran.conferenc.repository;
 
 import com.karadyauran.conferenc.model.User;
+import com.karadyauran.conferenc.model.enums.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,9 @@ public interface UserRepository extends JpaRepository<User, UUID>
     boolean existsByUsername(String username);
 
     boolean existsByEmail(String email);
+
+    @Query("SELECT u.role FROM User u WHERE u.id = :id")
+    Role getUserById(UUID id);
 
     @Modifying
     @Query("update User u set u.username = :username where u.id = :id")

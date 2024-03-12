@@ -9,6 +9,7 @@ public class ErrorMessage
     public static final String USERNAME_IS_ALREADY_EXISTS = "[USER] Username is already exists!";
     public static final String USERNAME_WAS_NOT_FOUND = "[USER] Username was not found!";
     public static final String EMAIL_IS_ALREADY_TAKEN = "[EMAIL] Email is already taken!";
+    public static final String USER_ROLE_IS_NOT_MATCHES = "[USER] Role is not matches";
 
     // SESSION
     public static final String SESSION_WAS_NOT_FOUND = "[SESSION] Session was not found!";

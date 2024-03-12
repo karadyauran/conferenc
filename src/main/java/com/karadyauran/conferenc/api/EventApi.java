@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.UUID;
 
-// eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcxMDIzNzk3OCwiZXhwIjoxNzEwMjM5NDE4fQ.7C5eHccPaLQ-WgiTeAUNlm5EJCQrH0EF_zVossVfRXw
 public interface EventApi
 {
     @PostMapping("/api/event/create")

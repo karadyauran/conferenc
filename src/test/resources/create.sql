@@ -100,7 +100,7 @@ VALUES ('3fde6a02-6824-447f-a621-5f103bf33b76', 'fa163f16-71f8-4d52-a8c3-215df45
 INSERT INTO sessions (id, event_id, title, start_time, end_time, speaker, location)
 VALUES ('a7c518d1-f074-4095-977d-3c123e6b13cc', '7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1', 'Introduction to AI',
         '2024-04-15 10:00:00', '2024-04-15 11:30:00', 'Dr. Smith', 'Room A'),
-       ('f865cd7e-0381-4f22-b624-af27dbf48d17', '7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1', 'Future of Robotics',
+       ('f865cd7e-0381-4f22-b624-af27dbf48d17', 'f1a60e4f-ae7e-447d-a08a-2d97a356b4e7', 'Future of Robotics',
         '2024-04-15 12:00:00', '2024-04-15 13:30:00', 'Dr. Johnson', 'Room B');
 
 -- Inserting test data into the user_sessions table

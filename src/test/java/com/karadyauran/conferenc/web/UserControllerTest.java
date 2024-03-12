@@ -132,7 +132,7 @@ class UserControllerTest
 
     @ParameterizedTest
     @WithMockUser
-    @Order(5)
+    @Order(6)
     @CsvSource({
             "username1, username1@gmail.com, 123123, ATTENDEE",
             "username2, username2@gmail.com, 123123, ORGANIZER",
@@ -145,7 +145,7 @@ class UserControllerTest
             "username9, username9@gmail.com, 123123, ORGANIZER",
             "username0, username01@gmail.com, 123123, ORGANIZER"
     })
-    public void testDeleteUsers(String username, String email, String password, String role) throws Exception
+    public void testRegister(String username, String email, String password, String role) throws Exception
     {
         var user = UserCreateDto.builder()
                 .username(username)

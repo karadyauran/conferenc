@@ -65,15 +65,20 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    @Transactional(isolation = Isolation.READ_COMMITTED)
     public List<EventDto> findAll()
     {
-        return mapper.toDtoList(
+        var obg = mapper.toDtoList(
                 repository.findAll()
         );
+
+        System.out.println(obg);
+
+        return obg;
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional
     public EventDto findById(UUID id)
     {
         log.debug("Looking for event with id {}", id);
@@ -85,7 +90,7 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
-    @Transactional(isolation = Isolation.READ_COMMITTED)
+    @Transactional
     public List<EventDto> findByUserId(UUID user)
     {
         log.debug("Looking for events for user with id {}", user);

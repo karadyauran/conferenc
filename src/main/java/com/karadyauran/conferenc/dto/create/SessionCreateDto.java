@@ -20,8 +20,10 @@ public class SessionCreateDto
 {
     UUID userId;
     UUID eventId;
+    String title;
     Timestamp start;
     Timestamp end;
     String speaker;
+    String location;
     String status;
 }

@@ -45,10 +45,12 @@ public class SessionServiceImpl implements SessionService
         log.debug("Creating session for event {}", session.getEventId());
 
         var obj = Session.builder()
+                .title(session.getTitle())
                 .eventId(session.getEventId())
                 .start(session.getStart())
                 .end(session.getEnd())
                 .speaker(session.getSpeaker())
+                .location(session.getLocation())
                 .build();
 
         var res = repository.save(obj);

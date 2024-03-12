@@ -32,8 +32,11 @@ public class Session
     @Column(name = "id")
     UUID id;
 
-    @Column(name = "event_id", insertable = false, updatable = false)
+    @Column(name = "event_id")
     UUID eventId;
+
+    @Column(name = "title")
+    String title;
 
     @Column(name = "start_time")
     Timestamp start;
@@ -48,16 +51,17 @@ public class Session
     String location;
 
     @OneToOne
-    @JoinColumn(name = "event_id", referencedColumnName = "id")
+    @JoinColumn(name = "event_id", referencedColumnName = "id", insertable = false, updatable = false)
     Event event;
 
     @ManyToMany(mappedBy = "sessions")
     private List<User> users;
 
-    public Session(UUID id, UUID eventId, Timestamp start, Timestamp end, String speaker, String location, Event event, List<User> users)
+    public Session(UUID id, UUID eventId, String title, Timestamp start, Timestamp end, String speaker, String location, Event event, List<User> users)
     {
         this.id = id;
         this.eventId = eventId;
+        this.title = title;
         this.start = start;
         this.end = end;
         this.speaker = speaker;

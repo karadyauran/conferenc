@@ -1,6 +1,7 @@
 package com.karadyauran.conferenc.web;
 
 import com.karadyauran.conferenc.api.EventApi;
+import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.service.interf.EventService;
@@ -56,13 +57,24 @@ public class EventController implements EventApi
         return ResponseEntity.ok("Success");
     }
 
+    @Operation(summary = "Finds all created events",
+            description = "Finds the events, converts it to List<EventDto> and returns",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
     @Override
     public ResponseEntity<List<EventDto>> findAll()
     {
         return ResponseEntity.ok().body(service.findAll());
     }
 
-    @Operation(summary = "Finds category by event id",
+    @Operation(summary = "Finds event by event id",
             description = "Finds the event, converts it to EventDto and returns",
             responses = {
                     @ApiResponse(responseCode = "200",
@@ -81,7 +93,7 @@ public class EventController implements EventApi
         return ResponseEntity.ok().body(service.findById(id));
     }
 
-    @Operation(summary = "Finds category by user id",
+    @Operation(summary = "Finds event by user id",
             description = "Finds the events, converts it to List<EventDto> and returns",
             responses = {
                     @ApiResponse(responseCode = "200",
@@ -96,6 +108,24 @@ public class EventController implements EventApi
     public ResponseEntity<List<EventDto>> findByUserId(UUID user)
     {
         return ResponseEntity.ok().body(service.findByUserId(user));
+    }
+
+    @Operation(summary = "Add category to event",
+            description = "Adding category to event, multiple",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
+    @Override
+    public ResponseEntity<Void> addCategory(UUID id, UUID categoryId)
+    {
+        service.addExistCategory(id, categoryId);
+        return ResponseEntity.ok().build();
     }
 
     @Operation(summary = "Change title",

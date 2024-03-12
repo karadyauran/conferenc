@@ -265,4 +265,22 @@ class EventControllerTest
                         .with(csrf()))
                 .andExpect(status().isNotFound());
     }
+
+    @ParameterizedTest
+    @WithMockUser
+    @Order(12)
+    @CsvSource({
+            "7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1, 6a646d1c-5d76-4629-9107-1ec2c25c7753",
+            "7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1, 2a171f32-8d35-43f3-b3f8-bc1fdac52f4c"
+    })
+    public void testAddCategory(String id, String category) throws Exception
+    {
+        mockMvc.perform(post("/api/event/add-category")
+                        .param("id", id)
+                        .param("categoryId", category)
+                        .with(csrf()))
+                .andExpect(status().isOk());
+    }
+
+
 }

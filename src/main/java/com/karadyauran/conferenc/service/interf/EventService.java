@@ -1,5 +1,6 @@
 package com.karadyauran.conferenc.service.interf;
 
+import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 
@@ -17,7 +18,7 @@ public interface EventService
 
     List<EventDto> findByUserId(UUID user);
 
-    void addCategory(UUID id, UUID category);
+    void addExistCategory(UUID id, UUID category);
 
     void changeOrganizer(UUID id, UUID newOrganizer);
 

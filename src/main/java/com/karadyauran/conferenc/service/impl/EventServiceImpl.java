@@ -1,15 +1,18 @@
 package com.karadyauran.conferenc.service.impl;
 
+import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.error.EventWasNotFoundException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
+import com.karadyauran.conferenc.mapper.EventCategoryCreateMapper;
 import com.karadyauran.conferenc.mapper.EventCreateMapper;
 import com.karadyauran.conferenc.mapper.EventMapper;
 import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.repository.EventCategoryMappingRepository;
+import com.karadyauran.conferenc.repository.EventCategoryRepository;
 import com.karadyauran.conferenc.repository.EventRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
 import com.karadyauran.conferenc.service.interf.EventService;
@@ -33,10 +36,12 @@ public class EventServiceImpl implements EventService
 {
     EventRepository repository;
     UserRepository userRepository;
-    EventCategoryMappingRepository categoryRepository;
+    EventCategoryRepository categoryRepository;
+    EventCategoryMappingRepository categoryMappingRepository;
 
     EventMapper mapper;
     EventCreateMapper createMapper;
+    EventCategoryCreateMapper categoryCreateMapper;
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
@@ -103,11 +108,11 @@ public class EventServiceImpl implements EventService
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void addCategory(UUID id, UUID category)
+    public void addExistCategory(UUID id, UUID category)
     {
         log.debug("Adding category {} to event {}", category, id);
 
-        categoryRepository.recordChanging(id, category);
+        categoryMappingRepository.recordChanging(id, category);
     }
 
     @Override

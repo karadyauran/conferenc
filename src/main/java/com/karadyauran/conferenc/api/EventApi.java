@@ -1,5 +1,6 @@
 package com.karadyauran.conferenc.api;
 
+import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.validation.interf.Uuid;
@@ -29,6 +30,9 @@ public interface EventApi
 
     @GetMapping("/api/event/find/user")
     ResponseEntity<List<EventDto>> findByUserId(@Uuid @RequestParam UUID user);
+
+    @PostMapping("/api/event/add-category")
+    ResponseEntity<Void> addCategory(@RequestParam UUID id, @RequestParam UUID categoryId);
 
     @PutMapping("/api/event/change/title")
     @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")

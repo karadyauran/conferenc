@@ -26,7 +26,8 @@ class UserControllerTest
     @Container
     @ServiceConnection
     private static final PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>("postgres:16.2")
-            .withInitScript("create.sql");
+            .withInitScript("create.sql")
+            .withInitScript("insert_data.sql");
 
     @BeforeAll
     static void setUp()

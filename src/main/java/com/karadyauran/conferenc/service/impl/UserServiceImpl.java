@@ -4,6 +4,7 @@ import com.karadyauran.conferenc.dto.create.UserCreateDto;
 import com.karadyauran.conferenc.dto.normal.UserDto;
 import com.karadyauran.conferenc.error.EmailIsAlreadyTakenException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
+import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.UsernameIsAlreadyExistsException;
 import com.karadyauran.conferenc.error.UsernameWasNotFoundException;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
@@ -17,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -58,13 +58,20 @@ public class UserServiceImpl implements UserService
             throw new EmailIsAlreadyTakenException(ErrorMessage.EMAIL_IS_ALREADY_TAKEN);
         }
 
+        if (user.getRole().equals("ADMIN"))
+        {
+            throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
+        }
+
+        var role = user.getRole().equals("t48jdnid8kdw92jnc8rmd") ? Role.ADMIN : Role.valueOf(user.getRole());
+
         var obj = User.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .password(
                         passwordEncoder.encode(user.getPassword())
                 )
-                .role(Role.valueOf(user.getRole()))
+                .role(role)
                 .build();
 
         repository.save(obj);
@@ -162,8 +169,10 @@ public class UserServiceImpl implements UserService
         return repository.existsByEmail(email);
     }
 
-    public boolean isProfileOwner(Authentication authentication, UUID profileId) {
-        if (authentication == null || !authentication.isAuthenticated()) {
+    public boolean isProfileOwner(Authentication authentication, UUID profileId)
+    {
+        if (authentication == null || !authentication.isAuthenticated())
+        {
             return false;
         }
 

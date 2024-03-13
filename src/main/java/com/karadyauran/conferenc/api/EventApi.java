@@ -59,6 +59,6 @@ public interface EventApi
     ResponseEntity<String> changeCapacity(@Uuid @RequestParam UUID id, @RequestParam Integer newCapacity);
 
     @DeleteMapping("/api/event/delete")
-    @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")
+    @PreAuthorize("isAuthenticated() and id == principal.username")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

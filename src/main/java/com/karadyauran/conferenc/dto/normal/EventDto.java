@@ -30,5 +30,6 @@ public class EventDto
     Integer capacity;
     Boolean isPublic;
     SessionDto session;
+    List<BookingDto> bookings;
     List<EventCategoryShortDto> categories;
 }

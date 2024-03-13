@@ -163,9 +163,14 @@ public class UserServiceImpl implements UserService
     }
 
     public boolean isProfileOwner(Authentication authentication, UUID profileId) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return false;
+        }
+
         User currentUser = (User) authentication.getPrincipal();
         UUID userId = currentUser.getId();
 
         return userId.equals(profileId);
     }
+
 }

@@ -31,6 +31,6 @@ public interface UserApi
     ResponseEntity<String> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
 
     @DeleteMapping("/api/user/delete")
-    @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")
+    @PreAuthorize("@userServiceImpl.isProfileOwner(authentication, #id)")
     ResponseEntity<String> deleteById(@Uuid @RequestParam UUID id);
 }

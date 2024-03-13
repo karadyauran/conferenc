@@ -6,12 +6,10 @@ import com.karadyauran.conferenc.error.EventWasNotFoundException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
-import com.karadyauran.conferenc.mapper.EventCategoryCreateMapper;
 import com.karadyauran.conferenc.mapper.EventCreateMapper;
 import com.karadyauran.conferenc.mapper.EventMapper;
 import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.repository.EventCategoryMappingRepository;
-import com.karadyauran.conferenc.repository.EventCategoryRepository;
 import com.karadyauran.conferenc.repository.EventRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
 import com.karadyauran.conferenc.service.interf.EventService;
@@ -35,12 +33,10 @@ public class EventServiceImpl implements EventService
 {
     EventRepository repository;
     UserRepository userRepository;
-    EventCategoryRepository categoryRepository;
     EventCategoryMappingRepository categoryMappingRepository;
 
     EventMapper mapper;
     EventCreateMapper createMapper;
-    EventCategoryCreateMapper categoryCreateMapper;
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
@@ -221,6 +217,7 @@ public class EventServiceImpl implements EventService
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
         }
 
+        categoryMappingRepository.deleteByEventId(id);
         repository.deleteById(id);
     }
 

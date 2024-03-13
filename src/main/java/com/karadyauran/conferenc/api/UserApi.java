@@ -4,7 +4,6 @@ import com.karadyauran.conferenc.dto.create.UserCreateDto;
 import com.karadyauran.conferenc.dto.normal.UserDto;
 import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +26,8 @@ public interface UserApi
     ResponseEntity<UserDto> findByUsername(@PathVariable String username);
 
     @PutMapping("/api/user/change/username")
-    @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")
     ResponseEntity<String> changeUsername(@Uuid @RequestParam UUID id, @RequestParam String username);
 
     @DeleteMapping("/api/user/delete")
-    @PreAuthorize("@userServiceImpl.isProfileOwner(authentication, #id)")
     ResponseEntity<String> deleteById(@Uuid @RequestParam UUID id);
 }

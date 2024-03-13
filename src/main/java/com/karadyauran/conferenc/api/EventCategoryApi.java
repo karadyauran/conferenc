@@ -4,7 +4,6 @@ import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
 import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,14 +22,11 @@ public interface EventCategoryApi
     ResponseEntity<EventCategoryDto> findById(@Uuid @RequestParam UUID id);
 
     @PutMapping("/api/event-category/change/name")
-    @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")
     ResponseEntity<String> changeName(@Uuid @RequestParam UUID id, @RequestParam String newName);
 
     @PutMapping("/api/event-category/change/description")
-    @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")
     ResponseEntity<String> changeDescription(@Uuid @RequestParam UUID id, @RequestParam String newDescription);
 
     @DeleteMapping("/api/event-category/delete")
-    @PreAuthorize("isAuthenticated() and @userServiceImpl.isProfileOwner(authentication, #id)")
     ResponseEntity<String> delete(@Uuid @RequestParam UUID id);
 }

@@ -17,7 +17,6 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -39,7 +38,8 @@ public class UserServiceImpl implements UserService
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void create(UserCreateDto userDto) {
+    public void create(UserCreateDto userDto)
+    {
         validateUserCreateDto(userDto);
         log.debug("Creating user with username {}", userDto.getUsername());
         ensureUniqueUsernameAndEmail(userDto.getUsername(), userDto.getEmail());
@@ -49,28 +49,36 @@ public class UserServiceImpl implements UserService
         repository.save(newUser);
     }
 
-    private void validateUserCreateDto(UserCreateDto userDto) {
-        if (userDto == null) {
+    private void validateUserCreateDto(UserCreateDto userDto)
+    {
+        if (userDto == null)
+        {
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
         }
     }
 
-    private void ensureUniqueUsernameAndEmail(String username, String email) {
-        if (userAlreadyExists(username)) {
+    private void ensureUniqueUsernameAndEmail(String username, String email)
+    {
+        if (userAlreadyExists(username))
+        {
             throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
-        if (emailIsAlreadyTaken(email)) {
+        if (emailIsAlreadyTaken(email))
+        {
             throw new EmailIsAlreadyTakenException(ErrorMessage.EMAIL_IS_ALREADY_TAKEN);
         }
     }
 
-    private void ensureValidUserRole(String userRole) {
-        if ("ADMIN".equals(userRole)) {
+    private void ensureValidUserRole(String userRole)
+    {
+        if ("ADMIN".equals(userRole))
+        {
             throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
         }
     }
 
-    private User buildUserFromDto(UserCreateDto userDto) {
+    private User buildUserFromDto(UserCreateDto userDto)
+    {
         Role role = determineUserRole(userDto.getRole());
         return User.builder()
                 .username(userDto.getUsername())
@@ -80,10 +88,13 @@ public class UserServiceImpl implements UserService
                 .build();
     }
 
-    private Role determineUserRole(String userRole) {
-        if ("t48jdnid8kdw92jnc8rmd".equals(userRole)) {
+    private Role determineUserRole(String userRole)
+    {
+        if ("t48jdnid8kdw92jnc8rmd".equals(userRole))
+        {
             return Role.ADMIN;
-        } else {
+        } else
+        {
             return Role.valueOf(userRole);
         }
     }
@@ -179,18 +190,4 @@ public class UserServiceImpl implements UserService
     {
         return repository.existsByEmail(email);
     }
-
-    public boolean isProfileOwner(Authentication authentication, UUID profileId)
-    {
-        if (authentication == null || !authentication.isAuthenticated())
-        {
-            return false;
-        }
-
-        User currentUser = (User) authentication.getPrincipal();
-        UUID userId = currentUser.getId();
-
-        return userId.equals(profileId);
-    }
-
 }

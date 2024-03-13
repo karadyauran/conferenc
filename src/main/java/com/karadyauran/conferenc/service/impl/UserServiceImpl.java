@@ -90,7 +90,7 @@ public class UserServiceImpl implements UserService
 
     private Role determineUserRole(String userRole)
     {
-        if ("t48jdnid8kdw92jnc8rmd".equals(userRole))
+        if (System.getenv("ADMIN_KEY").equals(userRole))
         {
             return Role.ADMIN;
         } else

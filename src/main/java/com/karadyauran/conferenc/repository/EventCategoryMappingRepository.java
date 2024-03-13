@@ -14,9 +14,5 @@ public interface EventCategoryMappingRepository extends JpaRepository<EventCateg
     @Modifying
     @Query(value = "INSERT INTO event_category_mapping (event_id, category_id) VALUES (:eventId, :categoryId)", nativeQuery = true)
     void recordChanging(UUID eventId, UUID categoryId);
-
-    @Modifying
-    @Query(value = "delete from event_category_mapping where event_id = :eventId", nativeQuery = true)
-    void deleteByEventId(UUID eventId);
 }
 

@@ -71,8 +71,8 @@ CREATE TABLE event_category_mapping
 (
     event_id    UUID NOT NULL,
     category_id UUID NOT NULL,
-    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (category_id) REFERENCES event_categories (id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (event_id) REFERENCES events (id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES event_categories (id) ON DELETE CASCADE
 );
 
 -- Inserting test data into the users table
@@ -119,6 +119,5 @@ VALUES ('6a646d1c-5d76-4629-9107-1ec2c25c7753', 'Technology', 'Events related to
 -- Inserting test data into the event_category_mapping table
 INSERT INTO event_category_mapping (event_id, category_id)
 VALUES ('7d6bb0d2-fc4c-4879-b15e-df7a145ce9a1', '6a646d1c-5d76-4629-9107-1ec2c25c7753'),
-       ('f1a60e4f-ae7e-447d-a08a-2d97a356b4e7', '6a646d1c-5d76-4629-9107-1ec2c25c7753'),
        ('f1a60e4f-ae7e-447d-a08a-2d97a356b4e7', '2a171f32-8d35-43f3-b3f8-bc1fdac52f4c');
 

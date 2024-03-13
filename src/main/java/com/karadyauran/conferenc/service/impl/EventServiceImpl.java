@@ -217,7 +217,6 @@ public class EventServiceImpl implements EventService
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
         }
 
-        categoryMappingRepository.deleteByEventId(id);
         repository.deleteById(id);
     }
 

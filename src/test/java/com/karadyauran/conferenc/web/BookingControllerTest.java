@@ -1,7 +1,6 @@
 package com.karadyauran.conferenc.web;
 
 import com.karadyauran.conferenc.dto.create.BookingCreateDto;
-import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.MethodOrderer;
@@ -24,7 +23,6 @@ import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.sql.Timestamp;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.containsString;

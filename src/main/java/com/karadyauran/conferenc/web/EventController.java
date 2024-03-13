@@ -1,7 +1,6 @@
 package com.karadyauran.conferenc.web;
 
 import com.karadyauran.conferenc.api.EventApi;
-import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventDto;
 import com.karadyauran.conferenc.service.interf.EventService;

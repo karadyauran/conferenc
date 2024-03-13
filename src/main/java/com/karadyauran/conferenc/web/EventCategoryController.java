@@ -3,7 +3,6 @@ package com.karadyauran.conferenc.web;
 import com.karadyauran.conferenc.api.EventCategoryApi;
 import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
-import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
 import com.karadyauran.conferenc.service.interf.EventCategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

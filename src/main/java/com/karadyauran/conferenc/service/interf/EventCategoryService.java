@@ -2,7 +2,6 @@ package com.karadyauran.conferenc.service.interf;
 
 import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
-import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
 
 import java.util.UUID;
 

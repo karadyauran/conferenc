@@ -2,7 +2,6 @@ package com.karadyauran.conferenc.api;
 
 import com.karadyauran.conferenc.dto.create.EventCategoryCreateDto;
 import com.karadyauran.conferenc.dto.normal.EventCategoryDto;
-import com.karadyauran.conferenc.dto.shorted.EventCategoryShortDto;
 import com.karadyauran.conferenc.validation.interf.Uuid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

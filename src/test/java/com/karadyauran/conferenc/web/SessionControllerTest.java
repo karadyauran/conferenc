@@ -1,6 +1,5 @@
 package com.karadyauran.conferenc.web;
 
-import com.karadyauran.conferenc.dto.create.EventCreateDto;
 import com.karadyauran.conferenc.dto.create.SessionCreateDto;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
@@ -28,7 +27,6 @@ import java.sql.Timestamp;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.containsString;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

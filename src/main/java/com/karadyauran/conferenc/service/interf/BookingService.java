@@ -22,4 +22,6 @@ public interface BookingService
     boolean bookingDoesNotExists(UUID id);
 
     boolean userDoesNotExists(UUID id);
+
+    boolean eventDoesNotExists(UUID id);
 }

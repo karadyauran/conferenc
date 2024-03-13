@@ -16,6 +16,9 @@ public interface EventRepository extends JpaRepository<Event, UUID>
 {
     Optional<List<Event>> findAllByOrganizerId(UUID id);
 
+    @Query("select e.capacity from Event e where e.id = :id")
+    int getEventCapacityByEventId(UUID id);
+
     @Modifying
     @Query("update Event e set e.organizerId = :organizerId where e.id = :id")
     void changeOrganizer(UUID id, UUID organizerId);

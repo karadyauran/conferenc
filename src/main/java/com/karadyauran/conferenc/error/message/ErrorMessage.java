@@ -22,4 +22,5 @@ public class ErrorMessage
 
     // BOOKING
     public static final String BOOKING_WAS_NOT_FOUND = "[BOOKING] Booking was not found!";
+    public static final String CAPACITY_LIMIT = "[BOOKING] CAPACITY LIMIT";
 }

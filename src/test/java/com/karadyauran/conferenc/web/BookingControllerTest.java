@@ -158,4 +158,26 @@ class BookingControllerTest
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("Success")));
     }
+
+    @Test
+    @WithMockUser
+    @Order(6)
+    public void testCreateBookingNegative() throws Exception
+    {
+        var booking = BookingCreateDto.builder()
+                .eventId(UUID.fromString("b8617157-8c20-4036-9fe0-d60dedfba2f3"))
+                .userId(UUID.fromString("fa163f16-71f8-4d52-a8c3-215df450a285"))
+                .build();
+
+        var m = new ObjectMapper();
+        var obj = m.writeValueAsString(booking);
+
+        System.out.println(obj);
+
+        mockMvc.perform(post("/api/booking/create")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(obj)
+                        .with(csrf()))
+                .andExpect(status().isNotFound());
+    }
 }

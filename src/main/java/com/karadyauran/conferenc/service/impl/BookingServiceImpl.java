@@ -3,15 +3,17 @@ package com.karadyauran.conferenc.service.impl;
 import com.karadyauran.conferenc.dto.create.BookingCreateDto;
 import com.karadyauran.conferenc.dto.normal.BookingDto;
 import com.karadyauran.conferenc.error.BookingWasNotFoundException;
+import com.karadyauran.conferenc.error.CapacityLimitException;
+import com.karadyauran.conferenc.error.EventWasNotFoundException;
 import com.karadyauran.conferenc.error.UserIdWasNotFoundException;
 import com.karadyauran.conferenc.error.UserRoleIsNotMatches;
 import com.karadyauran.conferenc.error.message.ErrorMessage;
 import com.karadyauran.conferenc.mapper.BookingCreateMapper;
 import com.karadyauran.conferenc.mapper.BookingMapper;
-import com.karadyauran.conferenc.model.Booking;
 import com.karadyauran.conferenc.model.enums.Role;
 import com.karadyauran.conferenc.model.enums.Status;
 import com.karadyauran.conferenc.repository.BookingRepository;
+import com.karadyauran.conferenc.repository.EventRepository;
 import com.karadyauran.conferenc.repository.UserRepository;
 import com.karadyauran.conferenc.service.interf.BookingService;
 import lombok.AccessLevel;
@@ -33,6 +35,7 @@ public class BookingServiceImpl implements BookingService
 {
     BookingRepository repository;
     UserRepository userRepository;
+    EventRepository eventRepository;
 
     BookingMapper mapper;
     BookingCreateMapper createMapper;
@@ -52,12 +55,28 @@ public class BookingServiceImpl implements BookingService
             throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
         }
 
+        if (eventDoesNotExists(booking.getEventId()))
+        {
+            throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
+        }
+
         log.debug("Creating booking by user {}", booking.getUserId());
 
         if (userDoesNotExists(booking.getUserId()))
         {
             throw new UserIdWasNotFoundException(ErrorMessage.USER_ID_WAS_NOT_FOUND);
         }
+
+        int currCapacity = repository.findLastBookingCapacityForEvent(booking.getEventId()).orElse(0);
+        int capacity = eventRepository.getEventCapacityByEventId(booking.getEventId());
+
+        if (currCapacity >= capacity)
+        {
+            throw new CapacityLimitException(ErrorMessage.CAPACITY_LIMIT);
+        }
+
+        var bookEntity = createMapper.toEntity(booking);
+        bookEntity.setNumberOfAttendees(currCapacity + 1);
 
         repository.save(
                 createMapper.toEntity(booking)
@@ -131,5 +150,11 @@ public class BookingServiceImpl implements BookingService
     public boolean userDoesNotExists(UUID id)
     {
         return !userRepository.existsById(id);
+    }
+
+    @Override
+    public boolean eventDoesNotExists(UUID id)
+    {
+        return !eventRepository.existsById(id);
     }
 }

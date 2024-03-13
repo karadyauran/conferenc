@@ -39,42 +39,53 @@ public class UserServiceImpl implements UserService
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
-    public void create(UserCreateDto user)
-    {
-        if (user == null)
-        {
+    public void create(UserCreateDto userDto) {
+        validateUserCreateDto(userDto);
+        log.debug("Creating user with username {}", userDto.getUsername());
+        ensureUniqueUsernameAndEmail(userDto.getUsername(), userDto.getEmail());
+        ensureValidUserRole(userDto.getRole());
+
+        User newUser = buildUserFromDto(userDto);
+        repository.save(newUser);
+    }
+
+    private void validateUserCreateDto(UserCreateDto userDto) {
+        if (userDto == null) {
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
         }
+    }
 
-        log.debug("Creating user with username {}", user.getUsername());
-
-        if (userAlreadyExists(user.getUsername()))
-        {
+    private void ensureUniqueUsernameAndEmail(String username, String email) {
+        if (userAlreadyExists(username)) {
             throw new UsernameIsAlreadyExistsException(ErrorMessage.USERNAME_IS_ALREADY_EXISTS);
         }
-
-        if (emailIsAlreadyTaken(user.getEmail()))
-        {
+        if (emailIsAlreadyTaken(email)) {
             throw new EmailIsAlreadyTakenException(ErrorMessage.EMAIL_IS_ALREADY_TAKEN);
         }
+    }
 
-        if (user.getRole().equals("ADMIN"))
-        {
+    private void ensureValidUserRole(String userRole) {
+        if ("ADMIN".equals(userRole)) {
             throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
         }
+    }
 
-        var role = user.getRole().equals("t48jdnid8kdw92jnc8rmd") ? Role.ADMIN : Role.valueOf(user.getRole());
-
-        var obj = User.builder()
-                .username(user.getUsername())
-                .email(user.getEmail())
-                .password(
-                        passwordEncoder.encode(user.getPassword())
-                )
+    private User buildUserFromDto(UserCreateDto userDto) {
+        Role role = determineUserRole(userDto.getRole());
+        return User.builder()
+                .username(userDto.getUsername())
+                .email(userDto.getEmail())
+                .password(passwordEncoder.encode(userDto.getPassword()))
                 .role(role)
                 .build();
+    }
 
-        repository.save(obj);
+    private Role determineUserRole(String userRole) {
+        if ("t48jdnid8kdw92jnc8rmd".equals(userRole)) {
+            return Role.ADMIN;
+        } else {
+            return Role.valueOf(userRole);
+        }
     }
 
     @Override

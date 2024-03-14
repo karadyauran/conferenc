@@ -1,6 +1,6 @@
 # 🎪 conferenc
 
-conferenc is a dynamic web application designed for seamless event management and booking. It enables organizers to create, manage, and promote various events, while allowing attendees to easily find, book, and keep track of events. Incorporating features like user authentication, event categorization, booking management, and interactive event sessions, EventBook aims to streamline the event planning and participation process for all users.
+conferenc is a dynamic web application designed for seamless event management and booking. It enables organizers to create, manage, and promote various events, while allowing attendees to easily find, book, and keep track of events. Incorporating features like user authentication, event categorization, booking management, and interactive event sessions, conferenc aims to streamline the event planning and participation process for all users.
 
 ## 📦 Technologies
 The main stack of technologies:

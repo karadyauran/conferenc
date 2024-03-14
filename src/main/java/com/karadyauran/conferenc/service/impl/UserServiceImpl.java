@@ -30,10 +30,9 @@ import java.util.UUID;
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class UserServiceImpl implements UserService
 {
+    static String ADMIN_KEY = "9D5B90F1C8DD7745F36E5B7C635682C4ED5D0AA624FCE5B7492B2A5F6B4E517C";
     PasswordEncoder passwordEncoder;
-
     UserRepository repository;
-
     UserMapper mapper;
 
     @Override
@@ -90,7 +89,7 @@ public class UserServiceImpl implements UserService
 
     private Role determineUserRole(String userRole)
     {
-        if (System.getenv("ADMIN_KEY").equals(userRole))
+        if (ADMIN_KEY.equals(userRole))
         {
             return Role.ADMIN;
         } else

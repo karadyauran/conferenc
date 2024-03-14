@@ -54,10 +54,10 @@ public class Event
     String location;
 
     @Column(name = "capacity")
-    int capacity;
+    Integer capacity;
 
     @Column(name = "is_public")
-    boolean isPublic;
+    Boolean isPublic;
 
     @OneToMany(mappedBy = "event")
     List<Booking> bookings;

@@ -17,6 +17,10 @@ public interface EventService
 
     List<EventDto> findByUserId(UUID user);
 
+    List<EventDto> findByLocation(String location);
+
+    List<EventDto> findByTitle(String title);
+
     void addExistCategory(UUID id, UUID category);
 
     void changeOrganizer(UUID id, UUID newOrganizer);

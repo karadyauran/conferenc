@@ -29,6 +29,12 @@ public interface EventApi
     @GetMapping("/api/event/find/user")
     ResponseEntity<List<EventDto>> findByUserId(@Uuid @RequestParam UUID user);
 
+    @GetMapping("/api/event/find/location")
+    ResponseEntity<List<EventDto>> findByLocation(@RequestParam String location);
+
+    @GetMapping("/api/event/find/title")
+    ResponseEntity<List<EventDto>> findByTitle(@RequestParam String title);
+
     @PostMapping("/api/event/add-category")
     ResponseEntity<Void> addCategory(@RequestParam UUID id, @RequestParam UUID categoryId);
 

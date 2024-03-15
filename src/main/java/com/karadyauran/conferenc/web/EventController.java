@@ -109,6 +109,40 @@ public class EventController implements EventApi
         return ResponseEntity.ok().body(service.findByUserId(user));
     }
 
+    @Operation(summary = "Finds event by location",
+            description = "Finds the events, converts it to List<EventDto> and returns",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
+    @Override
+    public ResponseEntity<List<EventDto>> findByLocation(String location)
+    {
+        return ResponseEntity.ok().body(service.findByLocation(location));
+    }
+
+    @Operation(summary = "Finds event by title",
+            description = "Finds the events, converts it to List<EventDto> and returns",
+            responses = {
+                    @ApiResponse(responseCode = "200",
+                            description = "All its great"),
+                    @ApiResponse(responseCode = "403",
+                            description = "Not Autowired"),
+                    @ApiResponse(responseCode = "500",
+                            description = "Something wrong")
+            }
+    )
+    @Override
+    public ResponseEntity<List<EventDto>> findByTitle(String title)
+    {
+        return ResponseEntity.ok().body(service.findByTitle(title));
+    }
+
     @Operation(summary = "Add category to event",
             description = "Adding category to event, multiple",
             responses = {

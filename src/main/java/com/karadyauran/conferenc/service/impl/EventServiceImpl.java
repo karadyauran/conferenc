@@ -102,6 +102,22 @@ public class EventServiceImpl implements EventService
     }
 
     @Override
+    public List<EventDto> findByLocation(String location)
+    {
+        return mapper.toDtoList(
+                repository.findEventByLocation(location).orElse(null)
+        );
+    }
+
+    @Override
+    public List<EventDto> findByTitle(String title)
+    {
+        return mapper.toDtoList(
+                repository.findEventByTitle(title).orElse(null)
+        );
+    }
+
+    @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void addExistCategory(UUID id, UUID category)
     {

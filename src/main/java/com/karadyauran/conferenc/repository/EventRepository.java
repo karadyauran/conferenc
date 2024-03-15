@@ -16,6 +16,10 @@ public interface EventRepository extends JpaRepository<Event, UUID>
 {
     Optional<List<Event>> findAllByOrganizerId(UUID id);
 
+    Optional<List<Event>> findEventByLocation(String location);
+
+    Optional<List<Event>> findEventByTitle(String title);
+
     @Query("select e.capacity from Event e where e.id = :id")
     int getEventCapacityByEventId(UUID id);
 

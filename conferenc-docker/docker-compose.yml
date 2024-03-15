@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres
+    image: postgres:16.2
     container_name: conferenc
     environment:
       POSTGRES_DB: conferenc

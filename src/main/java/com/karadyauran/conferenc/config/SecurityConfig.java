@@ -29,6 +29,8 @@ public class SecurityConfig
             "/api/user/username/**",
             "/api/v1/auth/authenticate",
             "/api/event/all",
+            "/api/event/find/location",
+            "/api/event/find/title",
 
             "/v2/api-docs",
             "/v3/api-docs",

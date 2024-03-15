@@ -73,6 +73,36 @@ class EventControllerTest
                 .andExpect(jsonPath("$[1].id").exists());
     }
 
+    @ParameterizedTest
+    @WithMockUser
+    @Order(2)
+    @CsvSource({
+            "Convention Center",
+            "Tech Hub"
+    })
+    public void testGetByLocation(String location) throws Exception
+    {
+        mockMvc.perform(get("/api/event/find/location")
+                        .param("location", location))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].location").value(location));
+    }
+
+    @ParameterizedTest
+    @WithMockUser
+    @Order(3)
+    @CsvSource({
+            "Tech Conference 2024",
+            "Workshop on AI"
+    })
+    public void testGetByTitle(String title) throws Exception
+    {
+        mockMvc.perform(get("/api/event/find/title")
+                .param("title", title))
+                .andExpect(status().isOk())
+            .andExpect(jsonPath("$[0].title").value(title));
+    }
+
 
     @ParameterizedTest
     @WithMockUser

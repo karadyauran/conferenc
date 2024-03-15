@@ -16,7 +16,10 @@ public interface BookingRepository extends JpaRepository<Booking, UUID>
 {
     Optional<List<Booking>> findAllByUserId(UUID id);
 
-    @Query("select b.numberOfAttendees from Booking b where b.eventId = :eventId order by b.eventId desc limit 1")
+    @Query("select b from Booking b where b.eventId = :eventId and b.userId = :user")
+    Optional<Booking> getBookingByEventIdAndUserId(UUID eventId, UUID user);
+
+    @Query("select COUNT(*) from Booking b where b.eventId = :eventId")
     Optional<Integer> findLastBookingCapacityForEvent(UUID eventId);
 
     @Modifying

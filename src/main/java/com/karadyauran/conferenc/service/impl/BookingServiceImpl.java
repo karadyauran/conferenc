@@ -2,6 +2,7 @@ package com.karadyauran.conferenc.service.impl;
 
 import com.karadyauran.conferenc.dto.create.BookingCreateDto;
 import com.karadyauran.conferenc.dto.normal.BookingDto;
+import com.karadyauran.conferenc.error.AlreadyBookedException;
 import com.karadyauran.conferenc.error.BookingWasNotFoundException;
 import com.karadyauran.conferenc.error.CapacityLimitException;
 import com.karadyauran.conferenc.error.EventWasNotFoundException;
@@ -45,43 +46,75 @@ public class BookingServiceImpl implements BookingService
     @Transactional(isolation = Isolation.READ_COMMITTED)
     public void create(BookingCreateDto booking)
     {
-        if (booking == null)
+        if (validateBooking(booking))
         {
             throw new IllegalArgumentException(ErrorMessage.NULL_OR_EMPTY);
         }
 
-        if (userRepository.getUserById(booking.getUserId()) == Role.ORGANIZER)
+        UUID eventId = booking.getEventId();
+        UUID userId = booking.getUserId();
+
+        if (validateUserAndRole(userId))
         {
             throw new UserRoleIsNotMatches(ErrorMessage.USER_ROLE_IS_NOT_MATCHES);
         }
 
-        if (eventDoesNotExists(booking.getEventId()))
+        if (eventDoesNotExists(eventId))
         {
             throw new EventWasNotFoundException(ErrorMessage.EVENT_WAS_NOT_FOUND);
         }
 
-        log.debug("Creating booking by user {}", booking.getUserId());
-
-        if (userDoesNotExists(booking.getUserId()))
+        if (userDoesNotExists(userId))
         {
             throw new UserIdWasNotFoundException(ErrorMessage.USER_ID_WAS_NOT_FOUND);
         }
 
-        int currCapacity = repository.findLastBookingCapacityForEvent(booking.getEventId()).orElse(0);
-        int capacity = eventRepository.getEventCapacityByEventId(booking.getEventId());
-
-        if (currCapacity >= capacity)
+        if (checkCapacity(eventId))
         {
             throw new CapacityLimitException(ErrorMessage.CAPACITY_LIMIT);
         }
 
+        if (checkExistence(eventId, userId))
+        {
+            throw new AlreadyBookedException(ErrorMessage.ALREADY_BOOKED);
+        }
+
+        int currCapacity = repository.findLastBookingCapacityForEvent(eventId).orElse(0);
+        saveBooking(booking, currCapacity);
+    }
+
+    private boolean validateBooking(BookingCreateDto booking)
+    {
+        return booking == null;
+    }
+
+    private boolean validateUserAndRole(UUID userId)
+    {
+        return userRepository.getUserById(userId) == Role.ORGANIZER;
+    }
+
+    private boolean checkCapacity(UUID eventId)
+    {
+        int currCapacity = repository.findLastBookingCapacityForEvent(eventId).orElse(0);
+        int capacity = eventRepository.getEventCapacityByEventId(eventId);
+
+        return currCapacity >= capacity;
+    }
+
+    private boolean checkExistence(UUID eventId, UUID userId)
+    {
+        System.out.println(repository.getBookingByEventIdAndUserId(eventId, userId));
+        return repository.getBookingByEventIdAndUserId(eventId, userId).isPresent();
+    }
+
+    private void saveBooking(BookingCreateDto booking, int currCapacity)
+    {
         var bookEntity = createMapper.toEntity(booking);
         bookEntity.setNumberOfAttendees(currCapacity + 1);
-
-        repository.save(
-                createMapper.toEntity(booking)
-        );
+        log.debug("Saving booking: {}", bookEntity);
+        repository.save(bookEntity);
     }
+
 
     @Override
     @Transactional(isolation = Isolation.READ_COMMITTED)

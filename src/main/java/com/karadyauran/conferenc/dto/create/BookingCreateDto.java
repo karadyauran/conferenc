@@ -19,4 +19,5 @@ public class BookingCreateDto
 {
     UUID userId;
     UUID eventId;
+    String status;
 }

@@ -34,15 +34,16 @@ public class SecurityConfig
 
             "/v2/api-docs",
             "/v3/api-docs",
-            "/v3/api-docs/**",
+            "/v3/api-docs/",
             "/swagger-resources",
-            "/swagger-resources/**",
+            "/swagger-resources/",
             "/configuration/ui",
             "/configuration/security",
-            "/swagger-ui/**",
-            "/webjars/**",
+            "/swagger-ui/",
+            "/webjars/",
             "/swagger-ui.html",
-            "/conferenc/v1/swagger-ui.html"
+            "/swagger-ui/",
+            "/store/**"
     };
 
     @Bean

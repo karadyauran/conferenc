@@ -22,17 +22,11 @@ spring:
     hibernate:
       ddl-auto: update
 
-
 springdoc:
   webjars:
     prefix:
   swagger-ui:
-    path: /conferenc/v1/swagger-ui.html
-    disable-swagger-default-url: true
-    enabled: true
-    operationsSorter: alpha
-    tagsSorter: alpha
-    doc-expansion: none
+    path: /store/v3/swagger-ui.html
   api-docs:
     enabled: true
-    path: /conferenc/v1/api-docs
+    path: /store/v3/api-docs

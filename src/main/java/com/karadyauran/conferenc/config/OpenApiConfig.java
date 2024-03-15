@@ -16,13 +16,11 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 ),
                 description = "OpenApi documentation for Store",
                 title = "OpenApi specification - conferenc.",
-                version = "1.0 Beta",
-                termsOfService = "/api/"
+                version = "1.0 Beta"
         ),
         servers = {
                 @Server(
-                        description = "Local ENV",
-                        url = "http://localhost:8080/api/"
+                        description = "Local ENV"
                 )
         }
 )
